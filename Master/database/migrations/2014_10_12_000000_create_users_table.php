@@ -24,7 +24,8 @@ return new class extends Migration
                 ->unsigned()
                 ->references('id')
                 ->on('roles')
-                ->onDelete('cascade');
+                ->onDelete('cascade')
+                ->default('3');
             $table->rememberToken();
             $table->timestamps();
         });
