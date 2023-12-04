@@ -89,6 +89,20 @@ class DriverController extends Controller
      */
     public function update(Request $request, Driver $driver)
     {
+        if ($request->hasFile('img')) {
+            $image = $request->file('img');
+            $extintion= $image->getClientOriginalExtension();
+            $imagename = time().'.'.$extintion;
+            $request->img->move(public_path('driver/img'), $imagename);
+            $driver->img = $imagename;
+        }
+        if ($request->hasFile('driver_license')) {
+            $license = $request->file('driver_license');
+            $extintion= $license->getClientOriginalExtension();
+            $imagename = time().'.'.$extintion;
+            $request->driver_license->move(public_path('car/license'), $imagename);
+            $driver->driver_license = $imagename;
+        }
         $driver->update($request->all());
         return response()->json($driver);
     }
