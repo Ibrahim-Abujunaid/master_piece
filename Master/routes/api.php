@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\RentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +34,7 @@ Route::resource('cars', CarController::class);
 Route::resource('brands', BrandController::class);
 Route::resource('location', LocationController::class);
 Route::resource('driver', DriverController::class);
+Route::resource('review', ReviewController::class);
+Route::resource('rent', RentController::class);
+Route::resource('user', UserController::class);
 

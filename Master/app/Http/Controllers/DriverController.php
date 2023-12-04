@@ -36,7 +36,25 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        $driver = Driver::create($request->all());
+        $driver =new Driver();
+        if ($request->hasFile('img')) {
+            $image = $request->file('img');
+            $extintion= $image->getClientOriginalExtension();
+            $imagename = time().'.'.$extintion;
+            $request->img->move(public_path('driver/img'), $imagename);
+            $driver->img = $imagename;
+        }
+        if ($request->hasFile('driver_license')) {
+            $license = $request->file('driver_license');
+            $extintion= $license->getClientOriginalExtension();
+            $imagename = time().'.'.$extintion;
+            $request->driver_license->move(public_path('car/license'), $imagename);
+            $driver->driver_license = $imagename;
+        }
+        $driver->age= $request->age;
+        $driver->user_id= $request->user_id;
+        $driver->save();
+
         return response()->json($driver);
     }
 
@@ -48,7 +66,7 @@ class DriverController extends Controller
      */
     public function show(Driver $driver)
     {
-        //
+        response()->json($driver);
     }
 
     /**

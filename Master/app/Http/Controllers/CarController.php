@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\Rent;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -74,7 +75,8 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
-        return response()->json($car);
+        $rents=Rent::with("review")->where("car_id","=", $car->id)->get();
+        return response()->json([$car, $rents]);
     }
 
     /**

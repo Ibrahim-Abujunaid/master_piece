@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Car;
+use App\Models\Rent;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -12,9 +14,10 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+       $reviews = Review::all();
+       return response()->json($reviews);
     }
 
     /**
@@ -35,7 +38,8 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rent_id = $request->rent_id;
+        $request->created_at;
     }
 
     /**
@@ -46,7 +50,9 @@ class ReviewController extends Controller
      */
     public function show(Review $review)
     {
-        //
+        // $car= Car::where("id", $request->car_id)->first();
+        // $car= Car::where("id", $request->car_id)->first();
+        $reviews = Review::orderBy("created_at","desc")->where();
     }
 
     /**
