@@ -14,7 +14,8 @@ class DriverController extends Controller
      */
     public function index()
     {
-        //
+        $drivers = Driver::all();
+        response()->json($drivers);
     }
 
     /**
@@ -35,7 +36,8 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $driver = Driver::create($request->all());
+        return response()->json($driver);
     }
 
     /**
@@ -69,7 +71,8 @@ class DriverController extends Controller
      */
     public function update(Request $request, Driver $driver)
     {
-        //
+        $driver->update($request->all());
+        return response()->json($driver);
     }
 
     /**
@@ -80,6 +83,7 @@ class DriverController extends Controller
      */
     public function destroy(Driver $driver)
     {
-        //
+        $driver->delete();
+        return response()->json(['successfully deleted'],200);
     }
 }

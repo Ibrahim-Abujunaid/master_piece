@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DriverController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +30,6 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::resource('cars', CarController::class);
 Route::resource('brands', BrandController::class);
+Route::resource('location', LocationController::class);
+Route::resource('driver', DriverController::class);
 
