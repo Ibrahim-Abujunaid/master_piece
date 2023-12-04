@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -36,15 +37,31 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        $c=Car::with("owner")->where('owner_id',$request->owner_id)->get();//; $ownerId        $ownerId = intval();
+        $isRentee = User::where('id', $request->owner_id)->first()->role_id;
+        
+        
+        if ($isRentee != '2') {
+            return response()->json(["sorry you are not a rentee you can't add acar",$isRentee['role_id']]);
+        }else{
         $car = Car::create($request->all());
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
+        if ($request->hasFile('img')) {
+            $image = $request->file('img');
             $extintion= $image->getClientOriginalExtension();
             $imagename = time().'.'.$extintion;
-            $request->image->move(public_path('image'), $imagename);
-            $car->car_img = $imagename;
+            $request->img->move(public_path('car/img'), $imagename);
+            $car->img = $imagename;
         }
-        return response()->json(["added",$car]);
+        if ($request->hasFile('car_license')) {
+            $license = $request->file('car_license');
+            $extintion= $license->getClientOriginalExtension();
+            $imagename = time().'.'.$extintion;
+            $request->car_license->move(public_path('car/license'), $imagename);
+            $car->car_license = $imagename;
+        }
+            $car->update();
+
+        return response()->json(["added",$car]);}
     }
 
     /**
