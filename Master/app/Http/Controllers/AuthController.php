@@ -58,12 +58,18 @@ class AuthController extends Controller
 
     }
 
-    public function logout(){
-             Auth::logout();
-        auth()->user()->tokens()->delete();
-        return [
-            'message' => 'user logged out'
-        ];
+    public function logout()
+    {
+        if (auth()->user()) {
+            Auth::logout();
+            auth()->user()->tokens()->delete();
+            return [
+                'message' => 'user logged out'
+            ];
+        } else {
+            return [
+                'message' => 'User is not logged in'
+            ];
+        }
     }
-// Route::post('/login', [AuthController::class, 'login']);
 }
