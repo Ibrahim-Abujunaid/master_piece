@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rent;
+use App\Models\Car;
 use Illuminate\Http\Request;
 use DateTime;
 
@@ -15,7 +16,7 @@ class RentController extends Controller
      */
     public function index()
     {
-        $rents = Rent::all();
+        $rents = Rent::with("car","user")->get();
         return response()->json($rents);
     }
 
@@ -63,8 +64,8 @@ class RentController extends Controller
         $datetime2=new DateTime($endDate);
         $interval = $datetime1->diff($datetime2);
         $days = $interval->format('%a');
-        $booking = Rent::with('car')->find($car);
-        $oneDayPrice = $booking->car->price_day;
+        $oneDayPrice =Car::all()->find($car)->price_day;
+        // return response()->json( ['1'=> $oneDayPrice ]);
         $total=($days+1)*$oneDayPrice;
         $rent = new Rent();
         $rent->start= $startDate;
@@ -109,7 +110,7 @@ class RentController extends Controller
     public function update(Request $request, Rent $rent)
     {
         
-        $rent->update($request->all());
+        $rent->update($request->accept);
         return response()->json($rent);
     }
 

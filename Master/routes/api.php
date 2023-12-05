@@ -32,9 +32,9 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::resource('cars', CarController::class);
 Route::resource('brands', BrandController::class);
-Route::resource('location', LocationController::class);
-Route::resource('driver', DriverController::class);
-Route::resource('review', ReviewController::class);
-Route::resource('rent', RentController::class);
-Route::resource('user', UserController::class);
+Route::resource('locations', LocationController::class);
+Route::resource('drivers', DriverController::class);
+Route::resource('reviews', ReviewController::class);
+Route::resource('rents', RentController::class);
+Route::resource('users', UserController::class);
 

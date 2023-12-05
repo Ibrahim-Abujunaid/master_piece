@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('img')->nullable();
             $table->string('driver_license');
             $table->integer('age');
-            $table->foreignId('user_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('user_id')->unsigned()->references('id')->on('users')->onDelete('cascade')->unique();
             $table->timestamps();
         });
     }
