@@ -14,9 +14,32 @@ class CarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cars = Car::all();
+        $query= Car::query();
+        
+        // Apply filters based on user input
+        // if ($request->name) {
+        //     $query->where('name', 'like', '%' . $request->name . '%');
+        // }
+
+
+
+        if ($request->withDriver) {
+            $query->where('withDriver', "===", $request->withDriver);
+        }
+        if ($request->location) {
+            $query->where('location_id', $request->location);
+        }
+
+        if ($request->filled('min_price')) {
+            $query->where('price_day', '>=', $request->min_price);
+        }
+
+        if ($request->filled('max_price')) {
+            $query->where('price_day', '<=', $request->max_price);
+        }
+        $cars = $query->get();
         return response()->json($cars);
     }
 
