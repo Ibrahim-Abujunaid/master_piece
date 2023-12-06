@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,4 +38,5 @@ Route::resource('drivers', DriverController::class);
 Route::resource('reviews', ReviewController::class);
 Route::resource('rents', RentController::class);
 Route::resource('users', UserController::class);
+Route::resource('comments', CommentController::class);
 
