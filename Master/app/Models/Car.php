@@ -29,5 +29,7 @@ class Car extends Model
     public function location(){
         return $this->belongsTo(Location::class);
     }
-
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }

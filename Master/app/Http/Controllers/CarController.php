@@ -18,16 +18,16 @@ class CarController extends Controller
     {
         $query= Car::query();
         
-        // Apply filters based on user input
-        // if ($request->name) {
-        //     $query->where('name', 'like', '%' . $request->name . '%');
-        // }
-
-
-
-        if ($request->withDriver) {
-            $query->where('withDriver', "===", $request->withDriver);
+    
+        if ($request->transmission) {
+            $query->where('transmission', $request->transmission);
         }
+
+        if ($request->gear) {
+            $query->where('gear', $request->gear);
+        }
+
+
         if ($request->location) {
             $query->where('location_id', $request->location);
         }
@@ -39,7 +39,16 @@ class CarController extends Controller
         if ($request->filled('max_price')) {
             $query->where('price_day', '<=', $request->max_price);
         }
-        $cars = $query->get();
+
+        $cars = $query->join('users', 'users.id', '=', 'cars.owner_id')
+        ->join('locations','locations.id','=','cars.location_id')
+        ->join('brands','brands.id','=','cars.brand_id')
+        ->select('cars.id','users.name','locations.name as location',
+        'cars.img','brands.name as brand','cars.model','cars.gear','cars.transmission','cars.withDriver')
+        ->where('cars.availability', 1)
+        ->where('withDriver', $request->withDriver)
+        ->where('cars.status', 1)->get();
+
         return response()->json($cars);
     }
 

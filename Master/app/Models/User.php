@@ -57,8 +57,8 @@ class User extends Authenticatable
     public function rents(){
         return $this->hasMany(Rent::class);
     }
-    // public function reviews(){
-    //     return $this->hasMany(Review::class);
-    // }
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 
 }

@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function index(){
+        $users = User::where('role_id','!=',1)->with('role')->get();
+        return response()->json($users);
+    }
     /**
      * Show the form for creating the resource.
      *
@@ -24,7 +29,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        abort(404);
+        $user = User::create($request->all());
+        return response()->json($user);
     }
 
     /**
@@ -32,9 +38,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show()
-    {
-        //
+    public function show($id)
+    {        
+        $user=User::findOrFail($id);
+        return response()->json($user);
     }
 
     /**
@@ -55,7 +62,15 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        //
+        $user = User::findOrFail($request->id);
+        if ($request->hasFile('img')) {
+            $image = $request->file('img');
+            $extintion= $image->getClientOriginalExtension();
+            $imagename = time().'.'.$extintion;
+            $request->img->move(public_path('user'), $imagename);
+            $user->img = $imagename;
+        }
+        $user->update($request->all());
     }
 
     /**
@@ -63,8 +78,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(User $user)
     {
-        abort(404);
+        $user->delete();
+        return response()->json("user deleted");
     }
 }
