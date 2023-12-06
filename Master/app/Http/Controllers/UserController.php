@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index(){
-        $users = User::where('role_id','!=',1)->with('role')->get();
+        $users = User::where('role_id','!=',1) 
+        ->join('roles','roles.id','=','users.role_id')
+        ->select('users.name','users.img','roles.name as role','users.phone','users.email')->get();
         return response()->json($users);
     }
     /**

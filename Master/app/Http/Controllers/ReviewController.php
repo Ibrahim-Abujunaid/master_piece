@@ -64,12 +64,7 @@ class ReviewController extends Controller
         // $car= Car::where("id", $request->car_id)->first();
         // $::with("rent");, 'user.*','car.*'
         // $reviews = Review::select('review.*', 'rent.*')
-        //     
-        //     // ->join('user', 'user.id', '=', 'rent.user_id')
-        //     // ->join('properties', 'properties.id', '=', 'bookings.property_id')
-        //     ->where('rent.car_id',  $car)//->with('users','cars')//->where('','=', $car)->orderBy(
-        //     // ->where('properties.lessor_id', '=', $user->id),'','',
-        //     ->get();
+        
             $reviews = Review::join('rents', 'rents.id', '=', 'reviews.rent_id')
                 ->join('users', 'users.id', '=', 'rents.user_id')
                 ->select('users.name','rents.start','rents.end','reviews.rating','reviews.comment')
