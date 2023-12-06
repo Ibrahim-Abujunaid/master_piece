@@ -107,8 +107,8 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
-        $rents=Rent::with("review")->where("car_id","=", $car->id)->get();
-        return response()->json([$car, $rents]);
+        // $rents=Rent::with("review")->where("car_id","=", $car->id)->get();
+        return response()->json($car);
     }
 
     /**
