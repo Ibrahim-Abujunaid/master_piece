@@ -7,10 +7,16 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+        $r=$request->role_id;
+        if(!empty($r)){
+            $users=User::where("role_id",$r)
+            ->select('name','img','users.phone','users.email')->get();
+        }else{
         $users = User::where('role_id','!=',1) 
         ->join('roles','roles.id','=','users.role_id')
         ->select('users.name','users.img','roles.name as role','users.phone','users.email')->get();
+        }
         return response()->json($users);
     }
     /**
@@ -62,9 +68,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request , $id)
     {
-        $user = User::findOrFail($request->id);
+        $user = User::findOrFail($id);
         if ($request->hasFile('img')) {
             $image = $request->file('img');
             $extintion= $image->getClientOriginalExtension();
