@@ -44,7 +44,7 @@ class CarController extends Controller
         ->join('locations','locations.id','=','cars.location_id')
         ->join('brands','brands.id','=','cars.brand_id')
         ->select('cars.id','users.name','locations.name as location',
-        'cars.img','brands.name as brand','cars.model','cars.gear','cars.transmission','cars.withDriver')
+        'cars.img','brands.name as brand','cars.model','cars.gear','cars.fuel_type','cars.withDriver')
         ->where('cars.availability', 1)
         ->where('withDriver', $request->withDriver)
         ->where('cars.status', 'Accept')->get();

@@ -15,7 +15,7 @@ class DriverController extends Controller
     public function index()
     {
         $drivers = Driver::all();
-        response()->json($drivers);
+        return response()->json($drivers);
     }
 
     /**
@@ -64,9 +64,10 @@ class DriverController extends Controller
      * @param  \App\Models\Driver  $driver
      * @return \Illuminate\Http\Response
      */
-    public function show(Driver $driver)
+    public function show($id)
     {
-        response()->json($driver);
+        $driver = Driver::where('user_id',$id)->get();
+        return response()->json($driver);
     }
 
     /**

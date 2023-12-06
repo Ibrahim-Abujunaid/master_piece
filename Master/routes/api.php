@@ -5,7 +5,7 @@ use App\Http\Controllers\ReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
-use App\Http\Controllers\admin\CarAllController;
+use App\Http\Controllers\admin\CarController as CarAllController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LocationController;

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('location_id')->unsigned()->references('id')->on('locations')->onDelete('cascade');
             $table->string('img');
             $table->string('car_license');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->float('price_day');
             $table->year('model')->nullable();
             $table->boolean('withDriver')->default(false);
