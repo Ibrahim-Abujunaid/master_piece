@@ -18,9 +18,7 @@ class Rent extends Model
     public function car(){
         return $this->belongsTo(Car::class);
     }
-    // public function driver(){
-    //     return $this->belongsTo(Driver::class);
-    // }
+
     public function review(){
         return $this->hasOne(Review::class);
     }
