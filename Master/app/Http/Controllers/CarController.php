@@ -47,7 +47,7 @@ class CarController extends Controller
         'cars.img','brands.name as brand','cars.model','cars.gear','cars.transmission','cars.withDriver')
         ->where('cars.availability', 1)
         ->where('withDriver', $request->withDriver)
-        ->where('cars.status', 1)->get();
+        ->where('cars.status', 'Accept')->get();
 
         return response()->json($cars);
     }
