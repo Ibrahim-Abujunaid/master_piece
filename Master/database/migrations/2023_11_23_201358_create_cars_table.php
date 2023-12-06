@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('car_license');
             $table->string('description');
             $table->float('price_day');
-            $table->year('model');
+            $table->year('model')->nullable();
             $table->boolean('withDriver')->default(false);
             $table->boolean('availability')->default(true);
             $table->boolean('status')->default(false);//is approved by admin?
