@@ -11,7 +11,7 @@ class Car extends Model
     protected $fillable = [
         "owner_id","img","car_license","description","price_day",
         "model","withDriver","availability","location_id",
-        "status","transmission","brand_id","gear",];
+        "status","fuel_type","brand_id","gear",];
 
     public function type(){
         return $this->belongsTo(Type::class);
