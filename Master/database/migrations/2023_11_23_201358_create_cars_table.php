@@ -27,7 +27,7 @@ return new class extends Migration
             $table->foreignId('brand_id')->unsigned()->references('id')->on('brands')->onDelete('cascade');
             $table->foreignId('owner_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
             $table->enum('gear', ['manual','automatic']);
-            $table->enum('transmission', ['electric','hypered','gas']);
+            $table->enum('fuel_type', ['electric','hypered','gas','Disel']);
             $table->timestamps();
         });
     }
