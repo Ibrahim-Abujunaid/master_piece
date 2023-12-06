@@ -14,7 +14,9 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $drivers = Driver::all();
+        $drivers = Driver::join('users', 'users.id', '=', 'drivers.user_id') 
+        ->select('users.name','drivers.img','drivers.driver_license','drivers.age','users.phone')
+        ->get();
         return response()->json($drivers);
     }
 
@@ -66,7 +68,9 @@ class DriverController extends Controller
      */
     public function show($id)
     {
-        $driver = Driver::where('user_id',$id)->get();
+        $driver = Driver::join('users', 'users.id', '=', 'drivers.user_id') 
+        ->select('users.name','drivers.img','drivers.age','users.phone')
+        ->where('user_id',$id)->get();
         return response()->json($driver);
     }
 

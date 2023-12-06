@@ -22,9 +22,9 @@ class RentController extends Controller
         ->join('locations','locations.id','=','cars.location_id')
         ->join('brands','brands.id','=','cars.brand_id')
         ->join('users', 'users.id', '=', 'rents.user_id')
-        ->select('users.name as renter','rents.start','rents.end','rents.total_price','cars.gear',
-        'locations.name as location','cars.img','brands.name as brand','rents.Accept',//'','','','','','',
-        DB::raw('(select name from users where id = cars.owner_id) as owner_name'))->get();
+        ->select('users.name as renter','rents.start','rents.end','rents.total_price',
+        'locations.name as location','cars.img','brands.name as brand','rents.Accept',//'','','','','','','cars.gear',
+        DB::raw('(select name from users where id = cars.owner_id) as owner'))->get();
         return response()->json($rents);
     }
 
@@ -109,7 +109,7 @@ class RentController extends Controller
             ->join('users', 'users.id', '=', 'cars.owner_id')
             ->join('brands','brands.id','=','cars.brand_id') 
             ->join('locations','locations.id','=','cars.location_id')
-            ->select('users.name as rentee','rents.start','rents.end','rents.total_price','cars.gear','cars.withDriver',
+            ->select('users.name as rentee','users.phone','rents.start','rents.end','rents.total_price','cars.gear','cars.withDriver',
             'locations.name as location','cars.img','brands.name as brand','rents.Accept')
             ->orderBy("rents.created_at","desc")->get();
         }

@@ -48,8 +48,8 @@ class CommentController extends Controller
     public function show( $id)
     {
         $comments=Comment::join('users', 'users.id', '=', 'comments.user_id')
-        ->select('users.name','comments.*')
-        ->where('rents.car_id', $id)->orderBy("reviews.created_at","desc")
+        ->select('users.name','users.img','comments.content')
+        ->where('comments.car_id', $id)->orderBy("comments.created_at","desc")
         ->get();
         return response()->json($comments);
     }

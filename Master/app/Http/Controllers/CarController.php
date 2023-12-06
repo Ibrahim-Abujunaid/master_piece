@@ -77,8 +77,7 @@ class CarController extends Controller
         if ($isRentee != 2) {
             return response()->json(["sorry you are not a rentee you can't add acar"]);
         }elseif ($request->withDriver && $c->count() > 0) {
-            return response()->json(["sorry you can't add acar with driver more than once",$c]);
-            
+            return response()->json(["sorry you can't add acar with driver more than once",$c]);  
         }else{
         $car = Car::create($request->all());
         if ($request->hasFile('img')) {
