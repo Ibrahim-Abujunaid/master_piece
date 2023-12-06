@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Type;
 use Illuminate\Http\Request;
 
-class TypeController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::all();
-        return response()->json($types);
+        //
     }
 
     /**
@@ -36,17 +34,16 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        $type = Type::create($request->all());
-        return response()->json($type);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Type  $type
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Type $type)
+    public function show($id)
     {
         //
     }
@@ -54,10 +51,10 @@ class TypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Type  $type
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Type $type)
+    public function edit($id)
     {
         //
     }
@@ -66,10 +63,10 @@ class TypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Type  $type
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Type $type)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -77,12 +74,11 @@ class TypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Type  $type
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type $type)
+    public function destroy($id)
     {
-        $type->delete();
-        return response()->json(["message"=> "deleted"]);
+        //
     }
 }

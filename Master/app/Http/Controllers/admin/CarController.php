@@ -13,9 +13,14 @@ class CarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cars = Car::all();
+        $query= Car::query();
+        if ($request->status) {
+            $query->where('status', $request->status);
+        }
+        $cars = $query->orderBy("created_at","desc")->get();
+        // $cars = Car::all();->paginate(10)
         return response()->json($cars);
     }
 
@@ -59,7 +64,7 @@ class CarController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -71,7 +76,11 @@ class CarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $car= Car::find($id);
+        $car->update([ 
+           $car->status= $request->status ? $request->status :"Reject"
+        ]);
+
     }
 
     /**

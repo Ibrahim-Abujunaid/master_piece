@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Rent;
 use App\Models\Car;
+use App\Models\User;
+use DB;
 use Illuminate\Http\Request;
 use DateTime;
 
@@ -16,7 +18,13 @@ class RentController extends Controller
      */
     public function index()
     {
-        $rents = Rent::with("car","user")->get();
+        $rents = Rent::join('cars', 'cars.id', '=', 'rents.car_id')
+        ->join('locations','locations.id','=','cars.location_id')
+        ->join('brands','brands.id','=','cars.brand_id')
+        ->join('users', 'users.id', '=', 'rents.user_id')
+        ->select('users.name as renter','rents.start','rents.end','rents.total_price','cars.gear',
+        'locations.name as location','cars.img','brands.name as brand','rents.Accept',//'','','','','','',
+        DB::raw('(select name from users where id = cars.owner_id) as owner_name'))->get();
         return response()->json($rents);
     }
 
@@ -84,9 +92,29 @@ class RentController extends Controller
      * @param  \App\Models\Rent  $rent
      * @return \Illuminate\Http\Response
      */
-    public function show(Rent $rent)
+    public function show(Request $request, $id)
     {
-        //
+        $user=User::find($id);
+        
+        if ($user->role_id == 2) {
+            $rent = Rent::join('cars','cars.id','=','rents.car_id')
+            ->join('users', 'users.id', '=', 'rents.user_id')
+            ->join('brands','brands.id','=','cars.brand_id')
+            ->select('users.name as renter','rents.start','rents.end','rents.total_price','cars.img','brands.name as brand','rents.Accept')
+            ->where('cars.owner_id',$id)->orderBy("rents.created_at","desc")->get() ;
+            // return response()->json(compact('rent'));
+        }elseif( $user->role_id == 3) {
+            $rent = Rent::where('user_id',$id)
+            ->join('cars', 'cars.id', '=', 'rents.car_id')
+            ->join('users', 'users.id', '=', 'cars.owner_id')
+            ->join('brands','brands.id','=','cars.brand_id') 
+            ->join('locations','locations.id','=','cars.location_id')
+            ->select('users.name as rentee','rents.start','rents.end','rents.total_price','cars.gear','cars.withDriver',
+            'locations.name as location','cars.img','brands.name as brand','rents.Accept')
+            ->orderBy("rents.created_at","desc")->get();
+        }
+        // $rent;
+        return response()->json($rent);
     }
 
     /**
