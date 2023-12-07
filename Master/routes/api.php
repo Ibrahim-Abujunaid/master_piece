@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -42,3 +43,4 @@ Route::resource('rents', RentController::class);
 Route::resource('users', UserController::class);
 Route::resource('comments', CommentController::class);
 
+Route::get('count',[HomeController::class,'index']);
