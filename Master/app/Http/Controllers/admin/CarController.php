@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Car;
+use DB;
 
 class CarController extends Controller
 {
@@ -53,7 +54,14 @@ class CarController extends Controller
      */
     public function show($id)
     {
-        //
+        $cars=Car::where("owner_id",$id)
+        ->join('locations','locations.id','=','cars.location_id')
+        ->join('brands','brands.id','=','cars.brand_id')
+        ->select('cars.id','cars.img','locations.name as location','cars.description','cars.model','cars.price_day',
+        'cars.status','brands.name as brand','cars.model','cars.gear','cars.fuel_type',
+        DB::raw('CASE WHEN withDriver = 1 THEN "yes" ELSE "no" END as withDriver'))
+        ->get();
+        return response()->json($cars);
     }
 
     /**
