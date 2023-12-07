@@ -38,7 +38,7 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        $driver =new Driver();
+        $driver = Driver::create($request->all());
         if ($request->hasFile('img')) {
             $image = $request->file('img');
             $extintion= $image->getClientOriginalExtension();
@@ -53,9 +53,8 @@ class DriverController extends Controller
             $request->driver_license->move(public_path('car/license'), $imagename);
             $driver->driver_license = $imagename;
         }
-        $driver->age= $request->age;
-        $driver->user_id= $request->user_id;
-        $driver->save();
+        $driver->update();
+
 
         return response()->json($driver);
     }
