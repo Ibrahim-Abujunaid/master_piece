@@ -50,7 +50,7 @@ class DriverController extends Controller
             $license = $request->file('driver_license');
             $extintion= $license->getClientOriginalExtension();
             $imagename = time().'.'.$extintion;
-            $request->driver_license->move(public_path('car/license'), $imagename);
+            $request->driver_license->move(public_path('driver/license'), $imagename);
             $driver->driver_license = $imagename;
         }
         $driver->update();
