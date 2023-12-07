@@ -16,11 +16,11 @@ class BrandSeeder extends Seeder
     public function run()
     {
         Brand::create([
-            'name' => 'Toyota',
+            'name' => 'BMW',
         ]);
 
         Brand::create([
-            'name' => 'Honda',
+            'name' => 'Mercedes',
         ]);
 
         Brand::create([
@@ -28,11 +28,11 @@ class BrandSeeder extends Seeder
         ]);
 
         Brand::create([
-            'name' => 'Chevrolet',
+            'name' => 'Kia',
         ]);
 
         Brand::create([
-            'name' => 'Ram',
+            'name' => 'Nissan',
         ]);
     
     }

@@ -28,7 +28,7 @@ return new class extends Migration
             $table->foreignId('owner_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
             $table->enum('status', ['Reject','pending','Accept'])->default('pending');
             $table->enum('gear', ['manual','automatic']);
-            $table->enum('fuel_type', ['electric','hypered','gas','Disel']);
+            $table->enum('fuel_type', ['electric','hybrid','gas','disel']);
             $table->timestamps();
         });
     }
