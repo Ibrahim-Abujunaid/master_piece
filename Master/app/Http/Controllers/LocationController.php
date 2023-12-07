@@ -14,7 +14,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::all();
+        $locations = Location::select('id','name')->get();
         return response()->json($locations);
     }
 
