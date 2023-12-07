@@ -142,34 +142,63 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Driver Form
-    var submitDriverButton = document.getElementById("submitDriverDetails");
-    if (submitDriverButton) {
-        submitDriverButton.addEventListener("click", function () {
-            // Prepare driver data
-            const driverData = {
-                "user_id": sessionStorage.getItem("userid"),
-                "img": document.getElementById("driverImage").value,
-                "driver_license": document.getElementById("driverLicense").value,
-                "age": document.getElementById("driverAge").value
-            };
+//     // Driver Form
+//     var submitDriverButton = document.getElementById("submitDriverDetails");
+//     if (submitDriverButton) {
+//         submitDriverButton.addEventListener("click", function () {
+//             // Prepare driver data
+//             const driverData = {
+//                 "user_id": sessionStorage.getItem("userid"),
+//                 "img": document.getElementById("driverImage").value,
+//                 "driver_license": document.getElementById("driverLicense").value,
+//                 "age": document.getElementById("driverAge").value
+//             };
 
-            // Perform the POST request
-            fetch('http://127.0.0.1:8000/api/drivers', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json, text-plain, /",
-                    "X-Requested-With": "XMLHttpRequest"
-                },
-                body: JSON.stringify(driverData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Handle success
-                console.log('Driver details submitted successfully:', data);
-            })
-            .catch(error => console.error('Error submitting driver details:', error));
-        });
-    }
+//             // Perform the POST request
+//             fetch('http://127.0.0.1:8000/api/drivers', {
+//                 method: 'POST',
+//                 headers: {
+//                     "Content-Type": "application/json",
+//                     "Accept": "application/json, text-plain, /",
+//                     "X-Requested-With": "XMLHttpRequest"
+//                 },
+//                 body: JSON.stringify(driverData)
+//             })
+//             .then(response => response.json())
+//             .then(data => {
+//                 // Handle success
+//                 console.log('Driver details submitted successfully:', data);
+//             })
+//             .catch(error => console.error('Error submitting driver details:', error));
+//         });
+//     }
+});
+////Driver fetch new
+
+document.getElementById('driverDetailsForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const driver_license = document.getElementById('driverLicense').files[0];
+    const driver_img = document.getElementById('driverImage').files[0];
+ 
+const formData = new FormData();
+formData.append('driver_license', driver_license);
+formData.append('img', driver_img);
+formData.append('age',document.getElementById("driverAge").value);
+formData.append( "user_id", sessionStorage.getItem("userid"));
+fetch('http://127.0.0.1:8000/api/drivers/', {
+method: 'POST',
+headers: {
+'X-Requested-With': 'XMLHttpRequest'
+},
+body: formData
+})
+.then(response => response.json())
+.then(data => {
+// Handle successful upload
+console.log('Driver license uploaded successfully:', data);
+})
+.catch(error => {
+console.error('Error uploading driver license:', error);
+});
 });

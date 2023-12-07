@@ -126,7 +126,7 @@
     <!-- popup -->
     <div id="driverPopup" class="driver-popup">
         <h2>Driver Details</h2>
-        <form id="driverDetailsForm">
+        <form id="driverDetailsForm" enctype="multipart/form-data">
             <label for="driverImage">Driver Image:</label>
             <input type="file" id="driverImage" name="driverImage" required>
 
@@ -136,7 +136,7 @@
             <label for="driverAge">Age:</label>
             <input type="number" id="driverAge" name="driverAge" required>
 
-            <button id="submitDriverDetails" type="button">Submit</button>
+            <button id="submitDriverDetails" type="submit">Submit</button>
             <button id="closeDriverPopup" type="button">Close</button>
         </form>
     </div>
