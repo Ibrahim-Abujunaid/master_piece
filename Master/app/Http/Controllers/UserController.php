@@ -48,7 +48,9 @@ class UserController extends Controller
      */
     public function show($id)
     {        
-        $user=User::findOrFail($id);
+        $user=User::join('roles','roles.id','=','users.role_id')
+        ->select('users.name','users.img','roles.name as role','users.phone','users.email')
+        ->where('users.id',$id)->get();
         return response()->json($user);
     }
 

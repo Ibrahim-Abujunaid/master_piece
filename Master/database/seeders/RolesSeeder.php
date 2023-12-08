@@ -30,7 +30,7 @@ class RolesSeeder extends Seeder
             "name"=> "admin",]);
         
         Role::create([
-            "name"=> "rentee",]);
+            "name"=> "landlord",]);
 
         Role::create([
             "name"=> "renter",]);
