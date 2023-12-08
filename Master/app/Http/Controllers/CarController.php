@@ -31,8 +31,8 @@ class CarController extends Controller
             $query->whereIn('cars.location_id', $request->locations);
         }
         
-        if ($request->has('models')) {
-            $query->whereIn('cars.model_id', $request->models);
+        if ($request->has('brands')) {
+            $query->whereIn('cars.brand_id', $request->brands);
         }
 
         if ($request->filled('max_price')) {
@@ -45,7 +45,7 @@ class CarController extends Controller
         ->select('cars.id','users.name','locations.name as location',
         'cars.img','brands.name as brand','cars.model','cars.gear','cars.fuel_type','cars.withDriver')
         ->where('cars.availability', 1)
-        // ->where('withDriver', $request->withDriver)
+        ->where('withDriver', $request->withDriver)
         ->where('cars.status', 'Accept')
         ->orderBy("cars.created_at","desc")->get();
 

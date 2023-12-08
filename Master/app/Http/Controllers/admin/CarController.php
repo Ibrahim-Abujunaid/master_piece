@@ -20,7 +20,12 @@ class CarController extends Controller
         if ($request->status) {
             $query->where('status', $request->status);
         }
-        $cars = $query->orderBy("created_at","desc")->get();
+        $cars = $query->join('users', 'users.id', '=', 'cars.owner_id')
+        ->join('locations','locations.id','=','cars.location_id')
+        ->join('brands','brands.id','=','cars.brand_id')
+        ->select('cars.id','users.name','locations.name as location',
+        'cars.img','brands.name as brand','cars.car_license','cars.gear','cars.fuel_type','cars.withDriver','cars.status','cars.price_day')
+        ->orderBy("cars.created_at","desc")->get();
         // $cars = Car::all();->paginate(10)
         return response()->json($cars);
     }
