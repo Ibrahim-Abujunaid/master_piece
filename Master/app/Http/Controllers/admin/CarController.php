@@ -26,7 +26,7 @@ class CarController extends Controller
         ->select('cars.id','users.name','locations.name as location',
         'cars.img','brands.name as brand','cars.car_license','cars.gear','cars.fuel_type','cars.status','cars.price_day'
         ,DB::raw('CASE WHEN withDriver = 1 THEN "yes" ELSE "no" END as withDriver'),
-        DB::raw('CASE WHEN availability = 1 THEN "<i class="fa-solid fa-check"></i>" ELSE "<i class="fa-solid fa-x"></i>" END as availability'))
+        DB::raw('CASE WHEN availability = 1 THEN "fa-check" ELSE "fa-x" END as availability'))
         ->orderBy("cars.created_at","desc")->get();
         // $cars = Car::all();->paginate(10)
         return response()->json($cars);
