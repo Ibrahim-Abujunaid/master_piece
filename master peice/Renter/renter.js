@@ -185,7 +185,7 @@ const formData = new FormData();
 formData.append('driver_license', driver_license);
 formData.append('img', driver_img);
 formData.append('age',document.getElementById("driverAge").value);
-formData.append( "user_id", sessionStorage.getItem("userid"));
+formData.append( "user_id", sessionStorage.getItem("userId"));
 fetch('http://127.0.0.1:8000/api/drivers/', {
 method: 'POST',
 headers: {
