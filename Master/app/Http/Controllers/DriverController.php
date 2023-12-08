@@ -38,25 +38,32 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        $driver = Driver::create($request->all());
+        // $driver = Driver::create($request->all());
+        $userId = $request->user_id;
+        
+        $driverData = request()->all();
+
         if ($request->hasFile('img')) {
-            $image = $request->file('img');
-            $extintion= $image->getClientOriginalExtension();
-            $imagename = time().'.'.$extintion;
-            $request->img->move(public_path('driver/img'), $imagename);
-            $driver->img = $imagename;
+          $image = $request->file('img');
+          $extintion = $image->getClientOriginalExtension();
+          $imagename = time() . '.' . $extintion;
+          $request->img->move(public_path('driver/img'), $imagename);
+          $driverData['img'] = $imagename;
         }
+        
         if ($request->hasFile('driver_license')) {
-            $license = $request->file('driver_license');
-            $extintion= $license->getClientOriginalExtension();
-            $imagename = time().'.'.$extintion;
-            $request->driver_license->move(public_path('driver/license'), $imagename);
-            $driver->driver_license = $imagename;
-        }
-        $driver->update();
+                $license = $request->file('driver_license');
+                $extintion= $license->getClientOriginalExtension();
+                $imagename = time().'.'.$extintion;
+                $request->driver_license->move(public_path('driver/license'), $imagename);
+                $driverData['driver_license'] = $imagename;
+            }
+        Driver::updateOrCreate(
+            ['user_id' => $userId],
+            $driverData
+        );
 
-
-        return response()->json($driver);
+        return response()->json($driverData);
     }
 
     /**
