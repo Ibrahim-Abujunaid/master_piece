@@ -32,7 +32,7 @@ class CarController extends Controller
         }
         
         if ($request->has('models')) {
-            $query->whereIn('cars.model', $request->models);
+            $query->whereIn('cars.model_id', $request->models);
         }
 
         if ($request->filled('max_price')) {
