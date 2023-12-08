@@ -3,21 +3,43 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Car;
 use Illuminate\Http\Request;
+
 
 class UserController extends Controller
 {
-    public function index(Request $request){
-        $r=$request->role_id;
-        if(!empty($r)){
-            $users=User::where("role_id",$r)
-            ->select('name','img','users.phone','users.email')->get();
-        }else{
-        $users = User::where('role_id','!=',1) 
-        ->join('roles','roles.id','=','users.role_id')
-        ->select('users.name','users.img','roles.name as role','users.phone','users.email')->get();
+    public function index(Request $request)
+    {
+        $r = $request->role_id;
+    
+        if (!empty($r)) {
+            $users = User::withCount('cars')
+                ->where("role_id", $r)
+                ->select('id','name', 'img', 'users.phone', 'users.email')
+                ->get();
+        } else {
+            $users = User::where('role_id', '!=', 1)
+                ->join('roles', 'roles.id', '=', 'users.role_id')
+                ->select('users.id','users.name', 'users.img', 'roles.name as role', 'users.phone', 'users.email')
+                ->get();
         }
-        return response()->json($users);
+    
+        // Convert users with car count to an array for JSON response
+        $response = [];
+        foreach ($users as $user) {
+            $cars = Car::where('owner_id',$user->id)->count();
+            $response[] = [
+                'id'=> $user->id,
+                'name' => $user->name,
+                'img' => $user->img,
+                'phone' => $user->phone,
+                'email' => $user->email,
+                'car_count' => $cars,
+            ];
+        }
+    
+        return response()->json($response);
     }
     /**
      * Show the form for creating the resource.
