@@ -14,8 +14,7 @@ class UserController extends Controller
         $r = $request->role_id;
     
         if (!empty($r)) {
-            $users = User::withCount('cars')
-                ->where("role_id", $r)
+            $users = User::where("role_id", $r)
                 ->select('id','name', 'img', 'users.phone', 'users.email')
                 ->get();
         } else {
