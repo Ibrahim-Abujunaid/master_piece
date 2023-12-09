@@ -47,8 +47,8 @@
       }
       
       function val(){
-          let order=document.getElementById(order_by).value;
-          console.log(order)
+        let order = document.querySelector('#order_by').value;
+        console.log(order);
         url+=`&order_by=${order}`;
         mainFetch();
       }
