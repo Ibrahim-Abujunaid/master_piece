@@ -40,7 +40,7 @@
                           </div>
                           <div class="price">
                               <p>${car.price_day}JD/Day</p>
-                              <button>Rent Now</button>
+                              <a href="../SingleCar/SingleCar.html#${car.id}"><button>Rent Now</button></a>
                           </div>
                       </div> `   }) 
           });
