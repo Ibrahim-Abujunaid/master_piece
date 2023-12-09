@@ -110,8 +110,9 @@ class RentController extends Controller
             ->join('brands','brands.id','=','cars.brand_id') 
             ->join('locations','locations.id','=','cars.location_id')
             ->select('rents.id','users.name as landlord','users.phone','rents.start','rents.end',
-            'rents.total_price','cars.gear','cars.withDriver', 'cars.fuel_type',
+            'rents.total_price','cars.gear', 'cars.fuel_type',
             'locations.name as location','cars.img','brands.name as brand',
+            DB::raw('CASE WHEN withDriver = 1 THEN "yes" ELSE "no" END as withDriver'),
             DB::raw('CASE WHEN Accept = 1 THEN "Accepted" ELSE "Pending" END as status'))
             ->orderBy("rents.created_at","desc")->get();
         }
