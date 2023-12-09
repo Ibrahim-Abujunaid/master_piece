@@ -128,8 +128,7 @@ class CarController extends Controller
         $bookedDates = [];
         $rents=Rent::where('car_id',$id)->get();
         foreach ($rents as $rent) {
-            // return response()->json([$rent]);
-        // Retrieve all dates between the start and end booking dates
+            
         $startDate = new DateTime($rent->start);
         $endDate = new DateTime($rent->end);
         $endDate->modify('+1 day');

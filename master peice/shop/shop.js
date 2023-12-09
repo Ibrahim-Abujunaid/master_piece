@@ -4,7 +4,6 @@
       menu.onclick=()=>{
               nav1.classList.toggle('activ');
       }
-      
       let url=`http://127.0.0.1:8000/api/cars?withDriver=0`;
       
       function mainFetch() {
@@ -47,6 +46,12 @@
           });
       }
       
+      function val(){
+          let order=document.getElementById(order_by).value;
+          console.log(order)
+        url+=`&order_by=${order}`;
+        mainFetch();
+      }
       function ge(){
           const gearIds = [...document.querySelectorAll('input[name="gear"]:checked')] .map(checkBox => checkBox.value);
         const urlParams = new URLSearchParams(url);
