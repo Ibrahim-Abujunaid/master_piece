@@ -24,21 +24,30 @@ class CarController extends Controller
         if ($request->has('gear')) {
             $query->whereIn('gear', $request->gear);
         }
-
         if ($request->has('fuel_type')) {
             $query->whereIn('cars.fuel_type', $request->fuel_type);
         }
-
         if ($request->has('locations')) {
             $query->whereIn('cars.location_id', $request->locations);
-        }
-        
+        }       
         if ($request->has('brands')) {
             $query->whereIn('cars.brand_id', $request->brands);
         }
-
         if ($request->filled('max_price')) {
             $query->where('price_day', '<=', $request->max_price);
+        }
+
+        $orderBy=$request->order_by;
+        switch ($orderBy) {
+            case 'low_price':
+                $query->orderBy('price_day');
+                break;
+            case 'high_price':
+                $query->orderBy('price_day','desc');
+                break;
+                
+            default:
+                $query->orderBy('cars.created_at','desc');
         }
 
         $cars = $query->join('users', 'users.id', '=', 'cars.owner_id')
@@ -49,7 +58,8 @@ class CarController extends Controller
         ->where('cars.availability', 1)
         ->where('withDriver', $request->withDriver)
         ->where('cars.status', 'Accept')
-        ->orderBy("cars.created_at","desc")->get();
+        ->get();
+
 
         return response()->json($cars);
     }
