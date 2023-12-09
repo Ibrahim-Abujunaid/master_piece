@@ -66,7 +66,7 @@ class RejectController extends Controller
         ->select('rejects.id','users.name as landlord','users.phone','rejects.start','rejects.end',
         'cars.gear', 'cars.fuel_type','locations.name as location','cars.img','brands.name as brand',
         DB::raw('CASE WHEN withDriver = 1 THEN "yes" ELSE "no" END as withDriver')
-        ,DB::raw('CASE WHEN rejects.end < NOW() THEN "away" ELSE "not away" END as status'),)
+        ,DB::raw('CASE WHEN rejects.end > NOW() THEN "Rejected" ELSE "--" END as status'),)
         ->orderBy("rejects.created_at","desc")->get();
         return response()->json($reject);
     }
