@@ -18,13 +18,12 @@ class CarController extends Controller
     {
         $query= Car::query();
         
-    
-        if ($request->transmission) {
-            $query->where('transmission', $request->transmission);
-        }
-
         if ($request->gear) {
             $query->where('gear', $request->gear);
+        }
+
+        if ($request->has('fuel_type')) {
+            $query->whereIn('cars.fuel_type', $request->fuel_type);
         }
 
         if ($request->has('locations')) {
@@ -42,7 +41,7 @@ class CarController extends Controller
         $cars = $query->join('users', 'users.id', '=', 'cars.owner_id')
         ->join('locations','locations.id','=','cars.location_id')
         ->join('brands','brands.id','=','cars.brand_id')
-        ->select('cars.id','users.name','locations.name as location',
+        ->select('cars.id','users.name','locations.name as location','cars.price_day',
         'cars.img','brands.name as brand','cars.model','cars.gear','cars.fuel_type','cars.withDriver')
         ->where('cars.availability', 1)
         ->where('withDriver', $request->withDriver)
@@ -130,6 +129,7 @@ class CarController extends Controller
      */
     public function update(Request $request, Car $car)
     {
+        $car->update($request->all());
         if ($request->hasFile('img')) {
             $image = $request->file('img');
             $extintion= $image->getClientOriginalExtension();
@@ -144,7 +144,7 @@ class CarController extends Controller
             $request->car_license->move(public_path('car/license'), $imagename);
             $car->car_license = $imagename;
         }
-        $car->update($request->all());
+        $car->update();
         return response()->json(["done",$car]);
     }
 

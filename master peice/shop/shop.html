@@ -60,39 +60,31 @@
             <div class="show-col">
                 <h5>Brands</h5>
                 <div class="checkBox" id="brands">
-                    <input type="checkbox">All Brands <br>
-                    <!-- <input type="checkbox">BMW <br>
-                    <input type="checkbox">KIA <br>
-                    <input type="checkbox">FORD <br>
-                    <input type="checkbox">NISSAN <br>
-                    <input type="checkbox">MERCEDES <br> -->
+                    
                 </div>
             </div>
 
             <div class="show-col">
                 <h5>Transmotion</h5>
                 <div class="checkBox">
-                    <input type="checkbox">Automatic <br>
-                    <input type="checkbox">Manual <br>
+                    <input type="checkbox" name="gear" onchange="ge()" value="automatic">Automatic <br>
+                    <input type="checkbox" name="gear" onchange="ge()" value="manual">Manual <br>
                 </div>
             </div>
 
             <div class="show-col">
                 <h5>Fuel Type</h5>
-                <div class="checkBox">
-                    <input type="checkbox">Gas <br>
-                    <input type="checkbox">Disel <br>
-                    <input type="checkbox">elecric <br>
-                    <input type="checkbox">Hybrid <br>
+                <div class="checkBox" id="fuel_type">
+                    <input type="checkbox" name="fuel_type" onchange="fuel()" value="gas">Gas <br>
+                    <input type="checkbox" name="fuel_type" onchange="fuel()" value="disel">Disel <br>
+                    <input type="checkbox" name="fuel_type" onchange="fuel()" value="electric">Elecric <br>
+                    <input type="checkbox" name="fuel_type" onchange="fuel()" value="hybrid">Hybrid <br>
                 </div>
             </div>
             <div class="show-col">
                 <h5>Location</h5>
                 <div class="checkBox" id="location">
-                    <!-- <input type="checkbox">Amman <br>
-                    <input type="checkbox">Al-Zarqa <br>
-                    <input type="checkbox">Irbid <br>
-                    <input type="checkbox">Al-Salt<br> -->
+                   
                 </div>
             </div>
         </div>
@@ -111,206 +103,8 @@
                 </select>
             </div>
 
-            <div class="arr-row row">
-                <div class="arr-col">
-                    <div class="img">
-                        <img src="../img/arrivals/01.jpg" alt="">
-                    </div>
-                    <h5>Mercedes Benz Car</h5>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="review">
-                            <span>Ahmad mohammad</span>
-                        </div>
-                    </div>
-                    <div class="features">
-                        <span><i class="fa-solid fa-circle-exclamation"></i>Automatic</span>
-                        <span><i class="fa-solid fa-location-dot"></i>Amman</span>
-                        <span><i class="fa-solid fa-location-crosshairs"></i>elecric</span>
-                        <span><i class="fa-solid fa-car"></i>Car</span>
-                    </div>
-                    <div class="price">
-                        <p>100JD/Day</p>
-                        <a href="/SingleCar/SingleCar.html"><button>Rent Now</button></a>
-                    </div>
-                </div>
-                <div class="arr-col">
-                    <div class="img">
-                        <img src="../img/arrivals/02.jpg" alt="">
-                    </div>
-                    <h5>Mercedes Benz Car</h5>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="review">
-                            <span>Ahmad mohammad</span>
-                        </div>
-                    </div>
-                    <div class="features">
-                        <span><i class="fa-solid fa-circle-exclamation"></i>Automatic</span>
-                        <span><i class="fa-solid fa-location-dot"></i>Amman</span>
-                        <span><i class="fa-solid fa-location-crosshairs"></i>elecric</span>
-                        <span><i class="fa-solid fa-car"></i>Car</span>
-                    </div>
-                    <div class="price">
-                        <p>100JD/Day</p>
-                        <button>Rent Now</button>
-                    </div>
-                </div>
-                <div class="arr-col">
-                    <div class="img">
-                        <img src="../img/arrivals/03.jpg" alt="">
-                    </div>
-                    <h5>Mercedes Benz Car</h5>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="review">
-                            <span>Ahmad mohammad</span>
-                        </div>
-                    </div>
-                    <div class="features">
-                        <span><i class="fa-solid fa-circle-exclamation"></i>Automatic</span>
-                        <span><i class="fa-solid fa-location-dot"></i>Amman</span>
-                        <span><i class="fa-solid fa-location-crosshairs"></i>elecric</span>
-                        <span><i class="fa-solid fa-car"></i>Car</span>
-                    </div>
-                    <div class="price">
-                        <p>100JD/Day</p>
-                        <a href="/SingleCar/SingleCar.html"><button>Rent Now</button></a>
-                    </div>
-                </div>
-                <div class="arr-col">
-                    <div class="img">
-                        <img src="../img/arrivals/04.jpg" alt="">
-                    </div>
-                    <h5>Mercedes Benz Car</h5>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="review">
-                            <span>Ahmad mohammad</span>
-                        </div>
-                    </div>
-                    <div class="features">
-                        <span><i class="fa-solid fa-circle-exclamation"></i>Automatic</span>
-                        <span><i class="fa-solid fa-location-dot"></i>Amman</span>
-                        <span><i class="fa-solid fa-location-crosshairs"></i>elecric</span>
-                        <span><i class="fa-solid fa-car"></i>Car</span>
-                    </div>
-                    <div class="price">
-                        <p>100JD/Day</p>
-                        <button>Rent Now</button>
-                    </div>
-                </div>
-
-                <div class="arr-col">
-                    <div class="img">
-                        <img src="../img/arrivals/05.jpg" alt="">
-                    </div>
-                    <h5>Mercedes Benz Car</h5>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="review">
-                            <span>Ahmad mohammad</span>
-                        </div>
-                    </div>
-                    <div class="features">
-                        <span><i class="fa-solid fa-circle-exclamation"></i>Automatic</span>
-                        <span><i class="fa-solid fa-location-dot"></i>Amman</span>
-                        <span><i class="fa-solid fa-location-crosshairs"></i>elecric</span>
-                        <span><i class="fa-solid fa-car"></i>Car</span>
-                    </div>
-                    <div class="price">
-                        <p>100JD/Day</p>
-                        <button>Rent Now</button>
-                    </div>
-                </div>
-
-                <div class="arr-col">
-                    <div class="img">
-                        <img src="../img/arrivals/06.jpg" alt="">
-                    </div>
-                    <h5>Mercedes Benz Car</h5>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="review">
-                            <span>Ahmad mohammad</span>
-                        </div>
-                    </div>
-                    <div class="features">
-                        <span><i class="fa-solid fa-circle-exclamation"></i>Automatic</span>
-                        <span><i class="fa-solid fa-location-dot"></i>Amman</span>
-                        <span><i class="fa-solid fa-location-crosshairs"></i>elecric</span>
-                        <span><i class="fa-solid fa-car"></i>Car</span>
-                    </div>
-                    <div class="price">
-                        <p>100JD/Day</p>
-                        <button>Rent Now</button>
-                    </div>
-                </div>
-
-                <div class="arr-col">
-                    <div class="img">
-                        <img src="../img/arrivals/07.jpg" alt="">
-                    </div>
-                    <h5>Mercedes Benz Car</h5>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="review">
-                            <span>Ahmad mohammad</span>
-                        </div>
-                    </div>
-                    <div class="features">
-                        <span><i class="fa-solid fa-circle-exclamation"></i>Automatic</span>
-                        <span><i class="fa-solid fa-location-dot"></i>Amman</span>
-                        <span><i class="fa-solid fa-location-crosshairs"></i>elecric</span>
-                        <span><i class="fa-solid fa-car"></i>Car</span>
-                    </div>
-                    <div class="price">
-                        <p>100JD/Day</p>
-                        <button>Rent Now</button>
-                    </div>
-                </div>
+            <div class="arr-row row" id="shop">
+                
 
                 <div class="arr-col">
                     <div class="img">
