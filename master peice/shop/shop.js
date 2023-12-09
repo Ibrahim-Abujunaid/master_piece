@@ -48,24 +48,40 @@
       }
       
       function ge(){
-          const gearIds = document.querySelector('input[name="gear"]:checked').value
+          const gearIds = [...document.querySelectorAll('input[name="gear"]:checked')] .map(checkBox => checkBox.value);
         const urlParams = new URLSearchParams(url);
-        const existingBrandIds = urlParams.getAll('gear');
+        const existingBrandIds = urlParams.getAll('gear[]');
       
       
-        const uncheckedBrands = existingBrandIds.filter(brandId => !gearIds.includes(gearIds));
+        const uncheckedBrands = existingBrandIds.filter(gearId => !gearIds.includes(gearId));
             console.log();
-        
-                url+=`&gear=${gearIds}`;
+              // Remove the unchecked brands from the URL
+        uncheckedBrands.forEach(gearId => {
+            url = url.replace(`&gear[]=${gearId}`, '');
+          });
+          gearIds.forEach(element => {
+
+                url+=`&gear[]=${element}`;
                 console.log(url)
-      
+            });
           mainFetch();
       
       }
       function fuel(){
           const fuelIds = [...document.querySelectorAll('input[name="fuel_type"]:checked')]
             .map(checkBox => checkBox.value);
-          //   url = url.replace(/&?brands\[\\]=.*?(&|$)/g, '');
+
+        // Get the existing brand IDs from the URL
+        const urlParams = new URLSearchParams(url);
+        const existingBrandIds = urlParams.getAll('fuel_type[]');
+      
+        // Identify the unchecked brands
+        const uncheckedBrands = existingBrandIds.filter(brandId => !fuelIds.includes(brandId));
+      
+        // Remove the unchecked brands from the URL
+        uncheckedBrands.forEach(brandId => {
+          url = url.replace(`&fuel_type[]=${brandId}`, '');
+        });
             console.log(fuelIds);
           if (fuelIds.length > 0) {
               fuelIds.forEach(element => {
