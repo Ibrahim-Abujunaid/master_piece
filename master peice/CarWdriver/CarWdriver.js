@@ -17,7 +17,7 @@
               shop.innerHTML+=`
               <div class="arr-col">
                           <div class="img">
-                              <img src="C:xampp/htdocs/master_piece/Master/public/car/img/${car.img}" alt="">
+                              <img src="http://127.0.0.1:8000/car/img/${car.img}" alt="">
                           </div>
                           <h5>${car.brand}</h5>
                           <div class="rating">
