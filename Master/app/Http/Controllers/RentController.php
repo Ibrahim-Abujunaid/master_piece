@@ -100,7 +100,12 @@ class RentController extends Controller
             $rent = Rent::join('cars','cars.id','=','rents.car_id')
             ->join('users', 'users.id', '=', 'rents.user_id')
             ->join('brands','brands.id','=','cars.brand_id')
-            ->select('users.name as renter','rents.start','rents.end','rents.total_price','cars.img','brands.name as brand','rents.Accept')
+            ->join('locations','locations.id','=','cars.location_id')
+            ->select('rents.id','users.phone','cars.gear', 'cars.fuel_type',
+            'locations.name as location','cars.img','brands.name as brand',
+            'users.name as renter','rents.start','rents.end','rents.total_price',
+            DB::raw('CASE WHEN withDriver = 1 THEN "yes" ELSE "no" END as withDriver'),
+            DB::raw('CASE WHEN Accept = 1 THEN "Accepted" ELSE "Pending" END as status'))
             ->where('cars.owner_id',$id)->orderBy("rents.created_at","desc")->get() ;
             // return response()->json(compact('rent'));
         }elseif( $user->role_id == 3) {
