@@ -122,10 +122,10 @@ class CarController extends Controller
         // Retrieve all dates between the start and end booking dates
         $startDate = new DateTime($rent->start);
         $endDate = new DateTime($rent->end);
-        
+        $endDate->modify('+1 day');
+    
         $interval = new DateInterval('P1D'); // 1 day interval
         $dateRange = new DatePeriod($startDate, $interval, $endDate);
-        $endDate->modify('+1 day');
     
         // Convert the date range to an array of date strings
         foreach ($dateRange as $date) {
