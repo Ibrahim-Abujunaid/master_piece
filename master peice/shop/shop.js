@@ -101,21 +101,33 @@
                 console.log(element)
                 url+=`&brands[]=${element}`;
             });
-          // url += `.join(',')}`;
           console.log(url)
           
         }
       
         mainFetch();
       }
-       const brandIds = [...document.querySelectorAll('input[name="brand"]:checked')]
-          .map(checkBox => checkBox.value);
+    //    const brandIds = [...document.querySelectorAll('input[name="brand"]:checked')]
+    //       .map(checkBox => checkBox.value);
       
       function loc() {
           
         const locIds = [...document.querySelectorAll('input[name="location"]:checked')]
           .map(checkBox => checkBox.value);
-          // url = url.replace(/&?brands\[\\]=.*?(&|$)/g, '');
+
+          
+        // Get the existing brand IDs from the URL
+        const urlParams = new URLSearchParams(url);
+        const existingBrandIds = urlParams.getAll('locations[]');
+      
+        // Identify the unchecked brands
+        const uncheckedBrands = existingBrandIds.filter(brandId => !locIds.includes(brandId));
+      
+        // Remove the unchecked brands from the URL
+        uncheckedBrands.forEach(brandId => {
+          url = url.replace(`&locations[]=${brandId}`, '');
+        });
+
           console.log(locIds);
         if (locIds.length > 0) {
           locIds.forEach(element => {
@@ -140,8 +152,6 @@
                       // Populate brands select
                       data.forEach(item => {   
                           selectBrands.innerHTML+= `<input type="checkbox" name="brand" value="${item.id}" oninput="br()">${item.name} <br>` 
-                 
-      
                       });
                   })
                   .catch(error => console.error('Error fetching brands data:', error));
@@ -150,7 +160,6 @@
               fetch('http://127.0.0.1:8000/api/locations/')
                   .then(response => response.json())
                   .then(data => {
-                      // Populate brands select
                       data.forEach(item => {
                           selectLocation.innerHTML+= `<input type="checkbox" name="location" value="${item.id}" onchange="loc()">${item.name} <br>` 
       

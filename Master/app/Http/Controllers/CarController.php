@@ -111,7 +111,8 @@ class CarController extends Controller
         $car=Car::where('cars.id',$id)
         ->join('locations','locations.id','=','cars.location_id')
         ->join('brands','brands.id','=','cars.brand_id')
-        ->select('cars.id','cars.img','locations.name as location','cars.description','cars.model','cars.price_day',
+        ->join('users', 'users.id', '=', 'cars.owner_id')
+        ->select('cars.id','cars.img','locations.name as location','users.name','cars.description','cars.model','cars.price_day',
         'brands.name as brand','cars.model','cars.gear','cars.fuel_type')
         ->get();
         $bookedDates = [];
@@ -121,7 +122,7 @@ class CarController extends Controller
         // Retrieve all dates between the start and end booking dates
         $startDate = new DateTime($rent->start);
         $endDate = new DateTime($rent->end);
-        $endDate->modify('+1 day');
+        // $endDate->modify('+1 day');
     
         $interval = new DateInterval('P1D'); // 1 day interval
         $dateRange = new DatePeriod($startDate, $interval, $endDate);
