@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('rejects', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('rating');
-            // $table->text('comment');
-            $table->foreignId('rent_id')->unsigned()->references('id')->on('rents')->onDelete('cascade')->unique();
-            $table->timestamps();//new comments table for all users
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->foreignId('user_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('car_id')->unsigned()->references('id')->on('cars')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('rejects');
     }
 };
