@@ -4,13 +4,8 @@
       menu.onclick=()=>{
               nav1.classList.toggle('activ');
       }
-      const queryString = window.location.search;
-      // Parse the query string using the URLSearchParams object
-      const searchParams = new URLSearchParams(queryString);
       
-      // Get the value of the 'id' query parameter
-      const Driver = searchParams.get('withDriver');
-      let url=`http://127.0.0.1:8000/api/cars?withDriver=${Driver}`;
+      let url=`http://127.0.0.1:8000/api/cars?withDriver=0`;
       
       function mainFetch() {
           let shop=document.getElementById('shop');

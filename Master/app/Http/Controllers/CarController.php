@@ -6,6 +6,9 @@ use App\Models\Car;
 use App\Models\Rent;
 use App\Models\User;
 use Illuminate\Http\Request;
+use DateTime;
+use DateInterval;
+use DatePeriod;
 
 class CarController extends Controller
 {
@@ -103,10 +106,32 @@ class CarController extends Controller
      * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
-    public function show(Car $car)
+    public function show($id)
     {
+        $car=Car::where('cars.id',$id)
+        ->join('locations','locations.id','=','cars.location_id')
+        ->join('brands','brands.id','=','cars.brand_id')
+        ->select('cars.id','cars.img','locations.name as location','cars.description','cars.model','cars.price_day',
+        'brands.name as brand','cars.model','cars.gear','cars.fuel_type')
+        ->get();
+        $bookedDates = [];
+        $rents=Rent::where('car_id',$id)->get();
+        foreach ($rents as $rent) {
+            // return response()->json([$rent]);
+        // Retrieve all dates between the start and end booking dates
+        $startDate = new DateTime($rent->start);
+        $endDate = new DateTime($rent->end);
+        $endDate->modify('+1 day');
+    
+        $interval = new DateInterval('P1D'); // 1 day interval
+        $dateRange = new DatePeriod($startDate, $interval, $endDate);
+    
+        // Convert the date range to an array of date strings
+        foreach ($dateRange as $date) {
+            $bookedDates[] = $date->format('Y-m-d');
+        }}
         // $rents=Rent::with("review")->where("car_id","=", $car->id)->get();
-        return response()->json($car);
+        return response()->json(compact('car','bookedDates'));
     }
 
     /**

@@ -366,7 +366,7 @@ li:hover,
 section{
     display: grid;
     justify-content: center;
-    text-align: center;
+    text-align: justify;
     padding: 3rem 7rem;
 }
 /* show cars with search */
