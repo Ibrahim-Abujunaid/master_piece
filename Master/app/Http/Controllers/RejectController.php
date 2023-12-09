@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reject;
 use App\Models\Rent;
+use DB;
 use Illuminate\Http\Request;
 
 class RejectController extends Controller
@@ -34,10 +35,19 @@ class RejectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id)
+    public function store(Request $request)
     {
-        $rent=Rent::Find($id);
-        return response()->json($rent);
+        $rent=Rent::find($request->id);
+        
+        $reject=Reject::create([
+            'start'=> $rent->start,
+            'end'=> $rent->end,
+            'user_id'=> $rent->user_id,
+            'car_id'=> $rent->car_id
+        ]);
+        app('App\Http\Controllers\RentController')->destroy($rent);
+        return response()->json($reject);
+
     }
 
     /**
@@ -46,9 +56,19 @@ class RejectController extends Controller
      * @param  \App\Models\Reject  $reject
      * @return \Illuminate\Http\Response
      */
-    public function show(Reject $reject)
+    public function show($id)
     {
-        //
+        $reject=Reject::where('user_id',$id)
+        ->join('cars', 'cars.id', '=', 'rejects.car_id')
+        ->join('users', 'users.id', '=', 'cars.owner_id')
+        ->join('brands','brands.id','=','cars.brand_id') 
+        ->join('locations','locations.id','=','cars.location_id')
+        ->select('rejects.id','users.name as landlord','users.phone','rejects.start','rejects.end',
+        'cars.gear', 'cars.fuel_type','locations.name as location','cars.img','brands.name as brand',
+        DB::raw('CASE WHEN withDriver = 1 THEN "yes" ELSE "no" END as withDriver')
+        ,DB::raw('CASE WHEN rejects.end < NOW() THEN "away" ELSE "not away" END as status'),)
+        ->orderBy("rejects.created_at","desc")->get();
+        return response()->json($reject);
     }
 
     /**
