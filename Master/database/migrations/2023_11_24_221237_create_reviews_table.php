@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('rating');
-            // $table->text('comment');
             $table->foreignId('rent_id')->unsigned()->references('id')->on('rents')->onDelete('cascade')->unique();
             $table->timestamps();//new comments table for all users
         });
