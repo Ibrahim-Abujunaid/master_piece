@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RejectController;
 use App\Http\Controllers\ReviewController;
@@ -44,6 +45,7 @@ Route::resource('rents', RentController::class);
 Route::resource('users', UserController::class);
 Route::resource('comments', CommentController::class);
 Route::resource('rejects', RejectController::class);
+Route::resource('supscribe', EmailController::class);
 
 Route::get('count',[HomeController::class,'index']);
 Route::get('Avg/{id}',[ReviewController::class,'average']);
