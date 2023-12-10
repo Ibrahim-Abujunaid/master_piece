@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use DateTime;
 use DateInterval;
 use DatePeriod;
+use DB;
 
 class CarController extends Controller
 {
@@ -49,12 +50,14 @@ class CarController extends Controller
             default:
                 $query->orderBy('cars.created_at','desc');
         }
-
+//
         $cars = $query->join('users', 'users.id', '=', 'cars.owner_id')
         ->join('locations','locations.id','=','cars.location_id')
         ->join('brands','brands.id','=','cars.brand_id')
+        ->join('rents', 'rents.car_id', '=', 'cars.id')        
+        ->join('reviews', 'reviews.rent_id', '=', 'rents.id')
         ->select('cars.id','users.name','locations.name as location','cars.price_day',
-        'cars.img','brands.name as brand','cars.model','cars.gear','cars.fuel_type','cars.withDriver')
+        'cars.img','brands.name as brand','cars.model','cars.gear','cars.fuel_type',DB::raw('AVG(reviews.rating) as average_rating'))->groupBy('cars.id')
         ->where('cars.availability', 1)
         ->where('withDriver', $request->withDriver)
         ->where('cars.status', 'Accept')

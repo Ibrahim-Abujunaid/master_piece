@@ -6,6 +6,7 @@ use App\Models\Review;
 use App\Models\Car;
 use App\Models\Rent;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -110,5 +111,13 @@ class ReviewController extends Controller
     {
         $review->delete();
         return response()->json(["deleted"]);
+    }
+    public function average($id)
+    {
+        
+        $review = Review::join('rents', 'rents.id', '=', 'reviews.rent_id')
+        ->where('rents.car_id', $id)
+        ->select(DB::raw('AVG(reviews.rating) as average_rating'))->groupBy('rents.car_id')->get();
+        return response()->json($review);
     }
 }

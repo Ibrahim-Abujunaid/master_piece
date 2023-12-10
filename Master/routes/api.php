@@ -46,3 +46,4 @@ Route::resource('comments', CommentController::class);
 Route::resource('rejects', RejectController::class);
 
 Route::get('count',[HomeController::class,'index']);
+Route::get('Avg/{id}',[ReviewController::class,'average']);
