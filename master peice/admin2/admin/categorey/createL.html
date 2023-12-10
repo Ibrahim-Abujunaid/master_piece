@@ -19,7 +19,7 @@
     <!-- Admin Styling -->
     <link rel="stylesheet" href="../../css/admin.css">
 
-    <title>Admin Section - Add User</title>
+    <title>Admin Section - Add Topic</title>
 </head>
 
 <body>
@@ -62,34 +62,22 @@
         <!-- Admin Content -->
         <div class="admin-content">
             <div class="button-group">
-                <a href="create.html" class="btn btn-big">Renter Users</a>
-                <a href="index.html" class="btn btn-big">Landlord Users</a>
+                <a href="edit1.html" class="btn btn-big">Manage Locations</a>
+                <a href="index.html" class="btn btn-big">Manage Brands</a>
             </div>
-
 
             <div class="content">
 
-                <h2 class="page-title">Edit User</h2>
+                <h2 class="page-title">Add Location</h2>
 
-                <form id="updateForm" action="#" method="post">
+                <form id="brandForm" action="#" method="post">
                     <div>
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username" class="text-input">
-                    </div>
-
-                    <div>
-                        <label for="PhoneNum">PhoneNum</label>
-                        <input type="text" name="Numbers" id="PhoneNum" class="text-input">
-                    </div>
-
-                    <div>
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="text-input">
+                        <label for="Brand">City Name</label>
+                        <input type="text" name="Brand" id="Brand" class="text-input">
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-big">Update</button>
+                        <button type="submit" class="btn btn-big">Add Location</button>
                     </div>
-                </form>
 
             </div>
 
@@ -106,7 +94,23 @@
     <!-- Ckeditor -->
     <script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/ckeditor.js"></script>
     <!-- Custom Script -->
-    <script src="editusers.js"></script>
+    <script src="Location.js"></script>
+    <script>
+        // const isLoggedIn = sessionStorage.getItem('isLoggedin');
+        // let Logout = document.getElementById('Logout');
+        // if (isLoggedIn === 'true') {
+        //     // Change text and behavior for logged-in users
+        //     Logout.textContent = 'Log out';
+
+        //     Logout.addEventListener('click', (e) => {
+        //         // Log out logic
+        //         window.location.href = '/index.html';
+        //         sessionStorage.clear();
+        //     });
+        // } else {
+        //     window.location.href = '/login/login.html';
+        // }
+    </script>
 
 </body>
 

@@ -423,9 +423,11 @@ section {
   
   .edit {
     color: green;
+    cursor: pointer;
   }
   
   .delete {
+    cursor: pointer;
     color: red;
   }
   
@@ -473,7 +475,7 @@ section {
     right: -400px; 
     width: 300px;
     background-color: #fff;
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transition: right 0.3s ease-in-out;
     
@@ -543,7 +545,7 @@ section {
 }
 
 .add-car-form button {
-    background-color: #1a1a1a;
+    background-color: #d30d0d;
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -601,4 +603,23 @@ section {
 #driverPopup button:hover {
     background-color: #1a1a1a;
 }
+input.Availability {
+    
+    width: 30px; /* Set the width of the checkbox */
+    height: 30px; /* Set the height of the checkbox */
+    border: 2px solid #333; /* Set border color */
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+    outline: none; /* Remove the default focus outline */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
 
+/* Style for the checkmark when the checkbox is checked */
+input.Availability:checked::before {
+    content: '\2713'; /* Unicode character for a checkmark */
+    font-size: 20px; 
+    color: #fff; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -22,6 +22,7 @@
 
         <!-- Admin Styling -->
         <link rel="stylesheet" href="../../css/admin.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
         <title>Admin Section - Manage Topics</title>
     </head>
@@ -29,18 +30,18 @@
     <body>
         <header>
             <div class="logo">
-                <h1 class="logo-text"><span>Velvet</span>Strides</h1>
+               <a href="/index.html"> <h1 class="logo-text"><span>Velvet</span>Strides</h1></a>
             </div>
             <i class="fa fa-bars menu-toggle"></i>
             <ul class="nav">
                 <li>
                     <a href="#">
                         <i class="fa fa-user"></i>
-                        Awa Melvine
+                        Admin
                         <i class="fa fa-chevron-down" style="font-size: .8em;"></i>
                     </a>
                     <ul>
-                        <li><a href="#" class="logout">Logout</a></li>
+                        <li id="Logout"><a href="#" class="logout">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -52,7 +53,7 @@
             <!-- Left Sidebar -->
             <div class="left-sidebar">
                 <ul>
-                    <li><a href="../product/index.html">Manage Product </a></li>
+                    <li><a href="../product/index.html">Manage Orders </a></li>
                     <li><a href="../users/index.html">Manage Users</a></li>
                     <li><a href="../categorey/index.html">Manage Category</a></li>
                     <li><a href="../Salls/index.html">Manage Salls </a></li>
@@ -65,36 +66,7 @@
 
             <!-- Admin Content -->
             <div class="admin-content">
-                <div class="button-group">
-                    <a href="create.html" class="btn btn-big">Add Salls</a>
-                    <a href="index.html" class="btn btn-big">Manage Salls</a>
-                </div>
-
-
-                <div class="content">
-
-                    <h2 class="page-title">Manage Salls</h2>
-
-                    <table>
-                        <thead>
-                            <th>Number</th>
-                            <th>Salls</th>
-                            <th colspan="2">Action</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Poetry</td>
-                               
-                                <td class="edit"><a href="edit3.html"><i class="fa-solid fa-pen"></a></td>
-                                <td class="delete"><i class="fa-solid fa-trash"></i></i></td>
-                            </tr>
-                           
-                        </tbody>
-                    </table>
-
-                </div>
-
+                <canvas id="myChart" style="width:100%;max-width:800px"></canvas>
             </div>
             <!-- // Admin Content -->
 
@@ -107,7 +79,7 @@
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!-- Custom Script -->
-        <script src="../../js/scripts.js"></script>
+        <script src="salls.js"></script>
 
     </body>
 

@@ -382,6 +382,7 @@ li:hover,
     display: flex;
     justify-content: space-around;
     gap: 10px;
+    min-height: 50vh;
     flex-wrap: wrap;
   }
   
@@ -430,10 +431,17 @@ li:hover,
   }
   
   .status.pending {
-    color: #d30d0d;
+    color: #d37d0d;
     text-align: center;
   }
-  
+  .status.accepted {
+    color: #40a405;
+    text-align: center;
+  }
+  .status.reject {
+    color: #d37d0d;
+    text-align: center;
+  }
   .actions {
     display: flex;
     cursor: pointer;
@@ -446,5 +454,8 @@ li:hover,
   .reject{
     color: #d30d0d;
   }
+  .invisible {
+    display: none;
+}
 
   

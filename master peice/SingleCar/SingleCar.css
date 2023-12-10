@@ -355,7 +355,7 @@ li:hover,
 /* Style for the single car rental section */
 #car_info {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     padding: 20px;
     border: 1px solid #ddd;
@@ -380,7 +380,7 @@ li:hover,
 }
 
 .information {
-    flex-grow: 1;
+    /* flex-grow: 1; */
     text-align: center;
     padding: 0 20px;
 }
@@ -453,7 +453,7 @@ input {
 }
 
 button#submit {
-    width: 25%;
+    width: 50%;
     background-color: #d30d0d;
     color: #fff;
     padding: 15px;

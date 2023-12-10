@@ -24,9 +24,9 @@
                     </ul>
                 </li>
                 <li><a href="#">About us</a></li>
-                <li><a href="#">Contact us</a></li>
+                <li id="contact"><a href="#">Contact us</a></li>
                 <li id="addBtn"><a href="/signUp/signUp.html">Sign Up</a></li>
-                <li><a href="/login/login.html">Login</a></li>
+                <li id="loginbtn"><a href="/login/login.html">Login</a></li>
             </ul>
 
         </nav>
@@ -44,23 +44,21 @@
           />
         </div>
         <div class="profile-info">
-            <p name="type" id="password"><strong>Type:</strong>User</p>
-          <p name="username" id="username">
-            <strong>Username:</strong> Muneer ahmad
-          </p>
+            <p name="type" id="UserType"><strong>Type:</strong>Renter</p>
+          <p name="username" id="username"><strong>Username:</strong> Muneer ahmad</p>
+          <p name="phoneNumber" id="phoneNumber"><strong>phoneNumber:</strong>0798741235</p>
           <p name="email" id="email"><strong>Email:</strong> Muneer@example.com</p>
-          <p name="password" id="password"><strong>password:</strong>12345</p>
+          <p name="password" id="password"><strong>password:</strong>******</p>
         </div>
         <div class="edit-button">
           <button>
             <a href="edit.html">Edit Information</a>
           </button>
-          <button id="order">
+          <button onclick="orders()" id="order">
             Your Orders
           </button>
         </div>
       </div>
-      
      <!-- profile section end -->
 
 
@@ -111,7 +109,7 @@
             <i class="fa-brands fa-youtube"></i>
         </div>
     </div>
-
+    <script src="/Rolecheck.js"></script>
     <script src="profile.js"></script>
 </body>
 </html>

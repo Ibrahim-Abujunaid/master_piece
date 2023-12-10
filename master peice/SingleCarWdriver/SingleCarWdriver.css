@@ -355,7 +355,7 @@ li:hover,
 /* Style for the single car rental section */
 #car_info {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     padding: 20px;
     border: 1px solid #ddd;
@@ -453,7 +453,7 @@ input {
 }
 
 button#submit {
-    width: 25%;
+    width: 50%;
     background-color: #d30d0d;
     color: #fff;
     padding: 15px;
@@ -498,12 +498,12 @@ button#submit:hover {
   }
   .driver {
     display: flex;
-    align-items: center;
-    background-color: #dcdcdc; /* Background color */
+    align-items: center; /* Background color */
     border-radius: 10px; /* Adjust the border-radius to your preference */
     padding: 20px; /* Add padding to the "driver" section */
     margin-bottom: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .driver .img1 {

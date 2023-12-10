@@ -33,8 +33,9 @@ header {
 
 .admin-wrapper .admin-content {
   flex: 8;
+  justify-content: center;
   height: 100%;
-  padding: 40px 100px 100px;
+  padding: 40px 50px 100px;
   overflow-y: scroll;
   background-color: rgb(214, 214, 214);
 }
@@ -57,11 +58,13 @@ td {
 }
 
 .edit {
+  cursor: pointer;
   font-size: 25px;
   color: green;
 }
 
 .delete {
+  cursor: pointer;
   font-size: 25px;
   color: red;
 }
@@ -78,4 +81,16 @@ td {
 
 form div {
   margin-bottom: 15px;
+}
+.hover:hover img{
+  width: 300px;
+  transition: ease 0.4s;
+  height: 300px;
+  position: absolute;
+} 
+#Logout{
+  cursor: pointer;
+}
+#myChart{
+  margin: 4% auto;
 }

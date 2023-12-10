@@ -25,9 +25,9 @@
                     </ul>
                 </li>
                 <li><a href="#">About us</a></li>
-                <li><a href="#">Contact us</a></li>
+                <li id="contact"><a href="#">Contact us</a></li>
                 <li id="addBtn"><a href="/signUp/signUp.html">Sign Up</a></li>
-                <li><a href="/login/login.html">Login</a></li>
+                <li id="loginbtn"><a href="/login/login.html">Login</a></li>
             </ul>
 
         </nav>
@@ -66,30 +66,29 @@
                     <div class="card-body">
                       <div class="form-group">
                         <label class="form-label">Username</label>
-    
-                        <input type="text" class="form-control mb-1" value="nmaxwell" id="usernameContainer" />
+                        <input type="text" class="form-control mb-1" value="nmaxwell" id="usernameInput" />
                       </div>
-    
+                    
+                      <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="text" class="form-control mb-1" value="nmaxwell" id="phoneInput" />
+                      </div>
+                    
                       <div class="form-group">
                         <label class="form-label">E-mail</label>
-    
-                        <input type="text" class="form-control mb-1" value="nmaxwell@mail.com" id="emailContainer" />
+                        <input type="text" class="form-control mb-1" value="nmaxwell@mail.com" id="emailInput" />
                       </div>
+                    
                       <div class="form-group">
                         <label class="form-label">New password</label>
-                        <input type="password" class="form-control" id="currentPasswordInput" />
+                        <input type="password" class="form-control" value="******" id="passwordInput" />
                       </div>
                     </div>
-                  </div>
-    
-    
-                </div>
-              </div>
-            </div>
-            <div class="text-right mt-3 mb-3">
-              <button id="updateBtn" type="button" class="btn btn-danger">Save changes</button>&nbsp;
-              <a href="./profile.html"><button type="button" class="btn btn-default mr-4">Cancel</button></a>
-            </div>
+                    
+                    <div class="text-right mt-3 mb-3">
+                      <button id="updateBtn" type="button" class="btn btn-danger">Save changes</button>&nbsp;
+                      <a href="./profile.html"><button type="button" class="btn btn-default mr-4">Cancel</button></a>
+                    </div>
           </div>
         </div>
       </section>
@@ -140,6 +139,7 @@
             <i class="fa-brands fa-youtube"></i>
         </div>
     </div>
+    <script src="/Rolecheck.js"></script>
     <script src="profile.js"></script>
 </body>
 </html>

@@ -26,9 +26,9 @@
                     </ul>
                 </li>
                 <li><a href="#">About us</a></li>
-                <li><a href="#">Contact us</a></li>
+                <li id="contact"><a href="#">Contact us</a></li>
                 <li id="addBtn"><a href="/signUp/signUp.html">Sign Up</a></li>
-                <li><a href="/login/login.html">Login</a></li>
+                <li id="loginbtn"><a href="/login/login.html">Login</a></li>
             </ul>
 
         </nav>
@@ -38,30 +38,11 @@
     <!-- oreders  -->
     <div class="orders">
         <div class="name">
-            <h2>List Of all Mr. <span> Ibrahim Abujunaid</span> rentals</h2>
+            <h2>List Of all Mr. <span id="name">Ibrahim Abujunaid</span> rentals</h2>
         </div>
         <div class="admin-content">
-            <div class="content">
-                <div class="card">
-                    <img src="/img/arrivals/02.jpg" class="card-img" alt="Car Image">
-                    <div class="card-body">
-                        <h3>Ferrari</h3>
-                        <p><strong>User name: </strong>ali saed</p>
-                        <p><strong>PhoneNum:</strong>0789671075</p>
-                        <p><strong>Rental Date: </strong>7-12-2023</p>
-                        <p><strong>Return Date: </strong>9-12-2023</p>
-                        <p><strong>Transmission:</strong> Automatic</p>
-                        <p><strong>Fuel Type:</strong> Gas</p>
-                        <p><strong>Location:</strong> Amman</p>
-                        <p><strong>Driver:</strong> No</p>
-                        <p><strong>Cost:</strong> 100 JD/Day</p>
-                        <p class="status pending">Pending</p>
-                        <div class="actions">
-                            <span><i class="fa-solid fa-x reject"></i></span>
-                            <span><i class="fa-solid fa-check accept"></i></span>
-                        </div>
-                    </div>
-                </div>
+            <div class="content" id="rentsContainer">
+                
                 <!-- Add more cards as needed -->
             </div>
         </div>
@@ -115,7 +96,7 @@
             <i class="fa-brands fa-youtube"></i>
         </div>
     </div>
-
+    <script src="/Rolecheck.js"></script>
     <script src="OrdersRenter.js"></script>
 </body>
 

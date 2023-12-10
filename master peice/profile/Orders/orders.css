@@ -5,6 +5,7 @@
     box-sizing: 0px;
 }
 
+
 .header {
     width: auto;
     position: sticky;
@@ -377,15 +378,24 @@ li:hover,
   .admin-content {
     margin-top: 20px;
   }
-  
-  .content {
+  #rentsContainer{
+    width: 100%;
     display: flex;
     justify-content: space-around;
     gap: 10px;
     flex-wrap: wrap;
+}
+
+  .content {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    min-height: 50vh;
+    flex-wrap: wrap;
   }
   
   .card {
+    margin-bottom: 10px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -397,7 +407,7 @@ li:hover,
   .card-img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 30vh;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
@@ -430,9 +440,21 @@ li:hover,
   }
   
   .status.pending {
-    color: #d30d0d;
+    color: rgb(255, 94, 0);
     text-align: center;
   }
+  .status.accepted{
+    color: rgb(0, 153, 23);
+    text-align: center;
+  }
+  .status.rejected{
+    color: rgb(180, 45, 0);
+    text-align: center;
+  }
+  .invisible{
+    display: none;
+  }
+  
   
   .actions {
     cursor: pointer;

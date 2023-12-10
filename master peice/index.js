@@ -5,7 +5,36 @@ menu.onclick = () => {
   nav1.classList.toggle('activ');
 }
 //       counter
-let valueDisplays = document.querySelectorAll('.num');
+
+
+ // Fetch data from the API
+ fetch('http://127.0.0.1:8000/api/count')
+ .then(response => response.json())
+ .then(countData => {
+     // Update the HTML content with the retrieved data
+     document.getElementById('counterContainer').innerHTML = `
+         <div class="container">
+             <img src="./img/icons/1.JPG" alt="">
+             <span class="num" data-value="${countData.Cars}">${countData.Cars}</span>
+             <span class="text"><i class="fa-solid fa-plus"></i>Available Cars</span>
+         </div>
+         <div class="container">
+             <img src="./img/icons/2.JPG" alt="">
+             <span class="num" data-value="${countData.Client}">${countData.Client}</span>
+             <span class="text"><i class="fa-solid fa-plus"></i>Happy Clients</span>
+         </div>
+         <div class="container">
+             <img src="./img/icons/3.JPG" alt="">
+             <span class="num" data-value="${countData.CarWithDriver}">${countData.CarWithDriver}</span>
+             <span class="text"><i class="fa-solid fa-plus"></i>Car with Drivers</span>
+         </div>
+         <div class="container">
+             <img src="./img/icons/4.JPG" alt="">
+             <span class="num" data-value="30">0</span>
+             <span class="text"><i class="fa-solid fa-plus"></i>Years of Experience</span>
+         </div>
+     `;
+     let valueDisplays = document.querySelectorAll('.num');
 let interval = 1000;
 
 valueDisplays.forEach((valueDisplay) => {
@@ -21,52 +50,10 @@ valueDisplays.forEach((valueDisplay) => {
     }
   }, duration);
 });
+ })
+ .catch(error => console.error('Error fetching count:', error));
 
-let signupButtonNav = document.getElementById('addBtn');
-
-let loginButtonNav = document.getElementById('loginbtn');
-
-// Check if the user is logged in
-const Role = sessionStorage.getItem('roleId');
-const isLoggedIn = sessionStorage.getItem('isLoggedin');
-if (isLoggedIn == 'true' && Role == 1) {
-  loginButtonNav.textContent = 'Dashboard';
-  loginButtonNav.addEventListener('click', (e) => {
-    // Log out logic
-    window.location.href = 'admin';
-  });
-  signupButtonNav.textContent = 'Log out';
-  signupButtonNav.addEventListener('click', (e) => {
-    // Log out logic
-    window.location.href = 'index.html';
-    sessionStorage.clear();
-  });
-
-} else if (isLoggedIn === 'true') {
-  // Change text and behavior for logged-in users
-  signupButtonNav.textContent = 'Profile';
-  loginButtonNav.textContent = 'Log out';
-
-  loginButtonNav.addEventListener('click', (e) => {
-    // Log out logic
-    window.location.href = '/index.html';
-    sessionStorage.setItem("isLoggedin", "false");
-  });
-
-  signupButtonNav.addEventListener('click', (e) => {
-    // Log out logic
-    window.location.href = '/profile/profile.html';
-  });
-} else {
-  signupButtonNav.addEventListener('click', (e) => {
-
-    window.location.href = "signup.html"
-  });
-
-  loginButtonNav.addEventListener('click', (e) => {
-    window.location.href = "/login/login.html"
-  });
-}
+ 
 
 document.addEventListener("DOMContentLoaded", function () {
   // Get the select elements
@@ -101,3 +88,108 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch(error => console.error('Error fetching locations data:', error));
 });
+
+fetch('http://127.0.0.1:8000/api/cars?withDriver=0')
+.then(response => response.json())
+.then(data => {
+    // Limit the number of cars to display
+    const carsToDisplay = data.slice(0, 4);
+    
+    // Populate the car container with fetched data
+    populateCarContainer(carsToDisplay);
+})
+.catch(error => console.error('Error fetching data:', error));
+
+function populateCarContainer(cars) {
+const carContainer = document.getElementById('carContainer');
+
+// Iterate through the cars and generate HTML for each card
+cars.forEach(car => {
+    const carCard = document.createElement('div');
+    carCard.classList.add('arr-col');
+
+    carCard.innerHTML = `
+        <div class="img">
+            <img src="http://127.0.0.1:8000/car/img/${car.img}" alt="${car.brand} Car">
+        </div>
+        <h5>${car.brand} Car</h5>
+        <div class="rating">
+            <div class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <div class="review">
+                <span>${car.name}</span>
+            </div>
+        </div>
+        <div class="features">
+            <span><i class="fa-solid fa-location-dot"></i>${car.location}</span>
+            <span><i class="fa-solid fa-gear"></i>${car.gear}</span>
+            <span><i class="fa-solid fa-bolt"></i>${car.fuel_type}</span>
+            <span><i class="fa-solid fa-car"></i>Car</span>
+        </div>
+        <div class="price">
+            <p>${car.price_day}JD/Day</p>
+            <a href='/SingleCar/SingleCar.html#${car.id}'><button>Rent Now</button></a>
+        </div>
+    `;
+
+    carContainer.appendChild(carCard);
+});
+}
+
+fetch('http://127.0.0.1:8000/api/cars?withDriver=1')
+ .then(response => response.json())
+ .then(data => {
+     // Limit the number of cars to display
+     const carsToDisplay = data.slice(0, 4);
+     
+     // Populate the car container with fetched data
+     populateCarContainer1(carsToDisplay);
+ })
+ .catch(error => console.error('Error fetching data:', error));
+
+function populateCarContainer1(cars) {
+ const carContainer = document.getElementById('carContainer1');
+
+ // Iterate through the cars and generate HTML for each card
+ cars.forEach(car => {
+     const carCard = document.createElement('div');
+     carCard.classList.add('arr-col');
+
+     carCard.innerHTML = `
+         <div class="img">
+             <img src="http://127.0.0.1:8000/car/img/${car.img}" alt="${car.brand} Car">
+         </div>
+         <h5>${car.brand} Car</h5>
+         <div class="rating">
+             <div class="stars">
+                 <i class="fa-solid fa-star"></i>
+                 <i class="fa-solid fa-star"></i>
+                 <i class="fa-solid fa-star"></i>
+                 <i class="fa-solid fa-star"></i>
+                 <i class="fa-solid fa-star"></i>
+             </div>
+             <div class="review">
+                 <span>${car.name}</span>
+             </div>
+         </div>
+         <div class="features">
+             <span><i class="fa-solid fa-location-dot"></i>${car.location}</span>
+             <span><i class="fa-solid fa-gear"></i>${car.gear}</span>
+             <span><i class="fa-solid fa-bolt"></i>${car.fuel_type}</span>
+             <span><i class="fa-solid fa-car"></i>With driver</span>
+         </div>
+         <div class="price">
+             <p>${car.price_day}JD/Day</p>
+             <a href='/SingleCarWdriver/SingleCarWdriver.html#${car.id}'><button>Rent Now</button></a>
+         </div>
+     `;
+    
+     carContainer.appendChild(carCard);
+ });
+}
+

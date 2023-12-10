@@ -27,117 +27,118 @@
                     </ul>
                 </li>
                 <li><a href="#">About us</a></li>
-                <li><a href="#">Contact us</a></li>
+                <li id="contact"><a href="#">Contact us</a></li>
                 <li id="addBtn"><a href="/signUp/signUp.html">Sign Up</a></li>
-                <li><a href="/login/login.html">Login</a></li>
+                <li id="loginbtn"><a href="/login/login.html">Login</a></li>
             </ul>
 
         </nav>
         <i class="fa-solid fa-bars" id="menu" style="color: #000000;"></i>
     </header>
     <!-- end header           -->
- <!-- shop home section start -->
- <div class="inventory">
-    <h2>Car With Driver Shop</h2>
-    <div class="link">
-        <a href="../index.html">Home</a>
-        <span>>>></span>
-        <p>Car With Driver Shop</p>
+
+    <!-- shop home section start -->
+    <div class="inventory">
+        <h2>Car With Driver Shop</h2>
+        <div class="link">
+            <a href="../index.html">Home</a>
+            <span>>>></span>
+            <p>Car With Driver Shop</p>
+        </div>
     </div>
-</div>
-<!-- end home section  -->
-    <!-- arrivals section start -->
-    <section class="arrivals show">
-        <div class="col-1">
-            <div class="show-col">
-                <h5>Brands</h5>
-                <div class="checkBox" id="brands">
+    <!-- end home section  -->
+        <!-- arrivals section start -->
+        <section class="arrivals show">
+            <div class="col-1">
+                <div class="show-col">
+                    <h5>Brands</h5>
+                    <div class="checkBox" id="brands">
+                        
+                    </div>
+                </div>
+    
+                <div class="show-col">
+                    <h5>Transmotion</h5>
+                    <div class="checkBox">
+                        <input type="checkbox" name="gear" onchange="ge()" value="automatic">Automatic <br>
+                        <input type="checkbox" name="gear" onchange="ge()" value="manual">Manual <br>
+                    </div>
+                </div>
+    
+                <div class="show-col">
+                    <h5>Fuel Type</h5>
+                    <div class="checkBox" id="fuel_type">
+                        <input type="checkbox" name="fuel_type" onchange="fuel()" value="gas">Gas <br>
+                        <input type="checkbox" name="fuel_type" onchange="fuel()" value="disel">Disel <br>
+                        <input type="checkbox" name="fuel_type" onchange="fuel()" value="electric">Elecric <br>
+                        <input type="checkbox" name="fuel_type" onchange="fuel()" value="hybrid">Hybrid <br>
+                    </div>
+                </div>
+                <div class="show-col">
+                    <h5>Location</h5>
+                    <div class="checkBox" id="location">
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="head">
+                    <span>Showing of Results</span>
+                    <div class="others">
+                        
+                <div class="show-col">
                     
+                    <div class="searchBox">
+                        <input type="text" class="searchbar" placeholder="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
                 </div>
-            </div>
-
-            <div class="show-col">
-                <h5>Transmotion</h5>
-                <div class="checkBox">
-                    <input type="checkbox" name="gear" onchange="ge()" value="automatic">Automatic <br>
-                    <input type="checkbox" name="gear" onchange="ge()" value="manual">Manual <br>
+                    </div>
+                    <select id="order_by" onchange="val()">
+                        <option selected>sort by default</option>
+                        <option value="low_price">sort by Low Price</option>
+                        <option value="high_price">sort by High Price</option>
+                    </select>
                 </div>
-            </div>
-
-            <div class="show-col">
-                <h5>Fuel Type</h5>
-                <div class="checkBox" id="fuel_type">
-                    <input type="checkbox" name="fuel_type" onchange="fuel()" value="gas">Gas <br>
-                    <input type="checkbox" name="fuel_type" onchange="fuel()" value="disel">Disel <br>
-                    <input type="checkbox" name="fuel_type" onchange="fuel()" value="electric">Elecric <br>
-                    <input type="checkbox" name="fuel_type" onchange="fuel()" value="hybrid">Hybrid <br>
-                </div>
-            </div>
-            <div class="show-col">
-                <h5>Location</h5>
-                <div class="checkBox" id="location">
-                   
-                </div>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="head">
-                <span>Showing of Results</span>
-                <div class="others">
+    
+                <div class="arr-row row" id="shop">
                     
-            <div class="show-col">
-                
-                <div class="searchBox">
-                    <input type="text" class="searchbar" placeholder="Search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-            </div>
-                </div>
-                <select id="order_by" onchange="val()">
-                    <option selected>sort by default</option>
-                    <option value="low_price">sort by Low Price</option>
-                    <option value="high_price">sort by High Price</option>
-                </select>
-            </div>
-
-            <div class="arr-row row" id="shop">
-                
-
-                <div class="arr-col">
-                    <div class="img">
-                        <img src="../img/arrivals/08.jpg" alt="">
-                    </div>
-                    <h5>Mercedes Benz Car</h5>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+    
+                    <div class="arr-col">
+                        <div class="img">
+                            <img src="../img/arrivals/08.jpg" alt="">
                         </div>
-                        <div class="review">
-                            <span>Ahmad mohammad</span>
+                        <h5>Mercedes Benz Car</h5>
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="review">
+                                <span>Ahmad mohammad</span>
+                            </div>
+                        </div>
+                        <div class="features">
+                            <span><i class="fa-solid fa-circle-exclamation"></i>Automatic</span>
+                            <span><i class="fa-solid fa-location-dot"></i>Amman</span>
+                            <span><i class="fa-solid fa-location-crosshairs"></i>elecric</span>
+                            <span><i class="fa-solid fa-car"></i>Car</span>
+                        </div>
+                        <div class="price">
+                            <p>100JD/Day</p>
+                            <button>Rent Now</button>
                         </div>
                     </div>
-                    <div class="features">
-                        <span><i class="fa-solid fa-circle-exclamation"></i>Automatic</span>
-                        <span><i class="fa-solid fa-location-dot"></i>Amman</span>
-                        <span><i class="fa-solid fa-location-crosshairs"></i>elecric</span>
-                        <span><i class="fa-solid fa-car"></i>Car</span>
-                    </div>
-                    <div class="price">
-                        <p>100JD/Day</p>
-                        <button>Rent Now</button>
-                    </div>
+    
+    
                 </div>
-
-
+    
+    
             </div>
-
-
-        </div>
-    </section>
+        </section>
     <!-- footer section start -->
     <section class="footer">
         <div class="footer-row">
@@ -185,6 +186,7 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/Rolecheck.js"></script>
     <script src="CarWdriver.js"></script>
 </body>
 

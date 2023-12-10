@@ -55,17 +55,17 @@ function validateSignupForm() {
         errorElement.textContent = "Please select a user type";
         return;
     }
-
+    
     // Clear any previous error messages
     errorElement.textContent = "";
-
+    var usertype= document.querySelector('input[name="userType"]:checked').value;
     // Create the data object to be sent to the server
     var data = {
         name: name,
         email: email,
         phone: phoneNumber,
         password: password,
-        role_id: userRadio ? 2 : 3  // Assuming 2 for User and 3 for Renter
+        role_id: usertype  // Assuming 2 for User and 3 for Renter
     };
 
     // Fetch API to post data to the server

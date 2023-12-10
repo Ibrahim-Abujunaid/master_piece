@@ -44,7 +44,9 @@ function validateLoginForm() {
         // Assuming the server returns user data including role_id and user_id
         var roleId = userData.user.role_id;
         var id = userData.user.id;
+        var name =userData.user.name;
         // Save role id, user id, and isLoggedin in session storage
+        sessionStorage.setItem('name',name)
         sessionStorage.setItem('roleId', roleId);
         sessionStorage.setItem('userId', id);
         sessionStorage.setItem('isLoggedin', true);
@@ -55,7 +57,7 @@ function validateLoginForm() {
         } else if (roleId === 3) {
             window.location.href = "/index.html";
         } else if (roleId === 1) {
-            window.location.href = "/admin2/admin/users/index.html";
+            window.location.href = "/admin2/admin/Salls/index.html";
         }
     })
     .catch(error => {
