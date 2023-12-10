@@ -42,7 +42,8 @@ class ReviewController extends Controller
     {
         $rent_id = $request->rent_id;
         $rent= Rent::find($rent_id);
-        if ($rent->end<Carbon::now()) {
+        // return response()->json($rent);
+        if ($rent->end<=Carbon::now()) {
             $review = Review::create($request->all());
             return response()->json([$review]);
 

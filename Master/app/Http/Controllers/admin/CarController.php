@@ -65,7 +65,7 @@ class CarController extends Controller
         ->join('locations','locations.id','=','cars.location_id')
         ->join('brands','brands.id','=','cars.brand_id')
         ->select('cars.id','cars.img','locations.name as location','cars.description','cars.model','cars.price_day',
-        'cars.status','brands.name as brand','cars.model','cars.gear','cars.fuel_type',
+        'cars.status','brands.name as brand','cars.model','cars.gear','cars.fuel_type','cars.availability',
         DB::raw('CASE WHEN withDriver = 1 THEN "yes" ELSE "no" END as withDriver'))
         ->get();
         return response()->json($cars);
