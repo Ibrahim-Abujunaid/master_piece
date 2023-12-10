@@ -102,6 +102,7 @@ class RejectController extends Controller
      */
     public function destroy(Reject $reject)
     {
-        //
+        $reject->delete();
+        return response()->json("deleted");
     }
 }
