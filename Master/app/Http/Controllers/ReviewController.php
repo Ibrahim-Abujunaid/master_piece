@@ -113,11 +113,11 @@ class ReviewController extends Controller
         return response()->json(["deleted"]);
     }
     public function average($id)
-    {
-        
+    {        
         $review = Review::join('rents', 'rents.id', '=', 'reviews.rent_id')
         ->where('rents.car_id', $id)
-        ->select(DB::raw('AVG(reviews.rating) as average_rating'))->groupBy('rents.car_id')->get();
+        ->select(DB::raw('AVG(reviews.rating) as average_rating'))->get();
+        // ->groupBy('rents.car_id')
         return response()->json($review);
     }
 }
