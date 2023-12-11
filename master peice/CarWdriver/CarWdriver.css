@@ -378,6 +378,8 @@ section{
 .arrivals.show{
     display: flex;
     flex-wrap: wrap;
+    max-width: 1050px;
+    margin: auto;
     gap: 2.5rem;
 }
 .arrivals.show .col-1{
@@ -488,7 +490,6 @@ section{
     border-radius: 10px;
     text-align: justify;
     height: auto;
-    width: 230px;
     
 }
 .arr-row .arr-col .img{
@@ -523,7 +524,7 @@ section{
     margin-right: 2.9rem;
 }
 .arr-row .arr-col .rating .stars{
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     color:#d30d0d;
 }
 .arr-col .rating .review span{
