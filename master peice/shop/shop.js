@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   url+=(!loc) ? '':`&locations[]=${loc}` ;
   url+=(!br) ? '':'&brands[]='+br;
-  url+='&price='+pr;
+  url+=(pr!=0) ? '':'&price='+pr;
   url+=(!fu) ? '':'&fuel_type[]='+fu;
  
     mainFetch();

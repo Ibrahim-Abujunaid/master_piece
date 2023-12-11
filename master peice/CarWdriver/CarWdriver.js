@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const queryString = window.location.search;
   
   const searchParams = new URLSearchParams(queryString);
-  
+
   const loc= searchParams.get('location');
   const br= searchParams.get('brand');
   const pr= searchParams.get('price');
@@ -173,9 +173,9 @@ document.addEventListener("DOMContentLoaded", function () {
   
   url+=(!loc) ? '':`&locations[]=${loc}` ;
   url+=(!br) ? '':'&brands[]='+br;
-  url+='&price='+pr;
+  url+=(pr!=0) ? '':'&price='+pr;
   url+=(!fu) ? '':'&fuel_type[]='+fu;
- 
+
 
     mainFetch();
     // Get the select elements
