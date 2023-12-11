@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Review;
 use App\Models\Car;
 use App\Models\Rent;
-use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 
