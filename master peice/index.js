@@ -6,6 +6,23 @@ menu.onclick = () => {
 }
 //       counter
 
+function find() {
+    d=document.getElementById('driver').value;
+    l=document.getElementById('location').value;
+    b=document.getElementById('brands').value;
+    f=document.getElementById('fuel_type').value;
+    p=document.getElementById('price').value;
+    if (d==1) {
+        redirect=`CarWdriver/CarWdriver.html?price=${p}`;
+    }else{
+        redirect=`shop/shop.html?price=${p}`;
+    }
+    redirect+= (l != 0) ? `&location=${l}` :'';
+    redirect+= (b != 0) ? `&brand=${b}` :'';
+    redirect+= (f != 0) ? `&fuel_type=${f}` :'';
+    console.log(redirect);
+ location.href=redirect;
+}
 
  // Fetch data from the API
  fetch('http://127.0.0.1:8000/api/count')

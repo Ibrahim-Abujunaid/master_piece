@@ -20,18 +20,18 @@
             <ul id="nav1">
                 <li class="active"><a href="index.html">Home</a></li>
                 <li><a href="#">Become A Renter</a></li>
-                <li><a href="/shop/shop.html">Book Now</a>
+                <li><a href="shop/shop.html">Book Now</a>
                     <i class="fa-solid fa-chevron-down" style="color: #000000; font-size: 0.7rem;"></i>
                     <ul class="drop-down">
-                        <span><a href="/CarWdriver/CarWdriver.html">Car with Driver</a></span>
+                        <span><a href="CarWdriver/CarWdriver.html">Car with Driver</a></span>
                     </ul>
                 </li>
                 <li><a href="#about">About us</a></li>
                 <li id="contact"><a href="#">Contact us</a></li>
-                <li id="addBtn"><a href="/signUp/signUp.html">Sign Up</a></li>
-                <li id="loginbtn"><a href="/login/login.html">Login</a></li>
+                <li id="addBtn"><a href="signUp/signUp.html">Sign Up</a></li>
+                <li id="loginbtn"><a href="login/login.html">Login</a></li>
             </ul>
-            <a href="/Renter/renter.html"></a>
+            <a href="Renter/renter.html"></a>
         </nav>
         <i class="fa-solid fa-bars" id="menu" style="color: #000000;"></i>
     </header>
@@ -49,7 +49,7 @@
                             <a href="#"><button type="submit" class="AboutUs"><i
                                         class="fa-solid fa-arrow-right"></i>About Us
                                 </button></a>
-                            <a href="/shop/shop.html"><button type="submit" class="Shop"><i
+                            <a href="shop/shop.html"><button type="submit" class="Shop"><i
                                         class="fa-solid fa-arrow-right"></i>Rent a Car!</button></a>
                         </div>
                     </div>
@@ -69,41 +69,47 @@
             <div class="find-row">
                 <div class="find-item">
                     <h4>Brand Name</h4>
-                    <select id="brands"></select>
+                    <select id="brands">
+                        <option value="0">All</option>
+                    </select>
                 </div>
                 <div class="find-item">
                     <h4>Rent Type</h4>
-                    <select id="transmition">
-                        <option value="automatic">Rent Cars</option>
-                        <option value="manual">Car with driver</option>
+                    <select id="driver">
+                        <option value="0">Rent Cars</option>
+                        <option value="1">Car with driver</option>
                     </select>
                 </div>
                 <div class="find-item">
                     <h4>Location</h4>
-                    <select id="location"></select>
+                    <select id="location">
+                        <option value="">All</option>
+                    </select>
                 </div>
                 <div class="find-item">
                     <h4>fuel Type</h4>
-                    <select>
-                        <option>Hybrid</option>
-                        <option>elecric</option>
-                        <option>Gas</option>
-                        <option>Disel</option>
+                    <select id="fuel_type">
+                        <option value="">All</option>
+                        <option value="hybrid">Hybrid</option>
+                        <option value='electric'>elecric</option>
+                        <option value="gas">Gas</option>
+                        <option value="disel">Disel</option>
                     </select>
                 </div>
                 <div class="find-item">
                     <h4>Price Range/Day</h4>
-                    <select>
-                        <option>10JD-30JD</option>
-                        <option>30JD-50JD</option>
-                        <option>50JD-70JD</option>
-                        <option>70JD-90JD</option>
-                        <option>90JD-110JD</option>
-                        <option>110JD-130JD</option>
+                    <select id="price">
+                        <option value="">All</option>
+                        <option value="0,30">Less than 30JD</option>
+                        <option value="30,50">30JD-50JD</option>
+                        <option value="50,70">50JD-70JD</option>
+                        <option value="70,90">70JD-90JD</option>
+                        <option value="90,110">90JD-110JD</option>
+                        <option value="110,">More than 110JD</option>
                     </select>
                 </div>
                 <div class="search-btn">
-                    <button><i class="fa-solid fa-magnifying-glass"></i>Find Your Car</button>
+                    <button onclick="find()"><i class="fa-solid fa-magnifying-glass"></i>Find Your Car</button>
                 </div>
             </div>
         </div>
@@ -125,7 +131,7 @@
             <p class="p1"><i class="fa-solid fa-forward-step"></i>Rent a car for self-driven freedom.</p>
             <p class="p1"><i class="fa-solid fa-forward-step"></i>Indulge in chauffeur-driven luxury.</p>
             <p class="p1"><i class="fa-solid fa-forward-step"></i>Experience convenience on your terms.</p>
-            <a href="/CarWdriver/CarWdriver.html"><button>Rent Car with driver <i class="fa-solid fa-arrow-right"></i></button></a>
+            <a href="CarWdriver/CarWdriver.html"><button>Rent Car with driver <i class="fa-solid fa-arrow-right"></i></button></a>
         </div>
     </section>
     <!--  counter section -->
@@ -148,7 +154,7 @@
     <section class="footer">
         <div class="footer-row">
             <div class="footer-col">
-                <img src="./img/logo/lynx22-removebg-preview.png" alt="">
+                <img src="./img/logo/wGkC8OxwRAvAAAAAElFTkSuQmCC.png" alt="">
                 <p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse excepturi
                     ducimus quasi mollitia minima harum!</p>
                 <span><i class="fa-solid fa-phone"></i>+962 78 967 1075</span>

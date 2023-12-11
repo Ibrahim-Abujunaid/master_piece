@@ -4,25 +4,27 @@ let menu =document.getElementById("menu");
 menu.onclick=()=>{
         nav1.classList.toggle('activ');
 }
+
+
 let url=`http://127.0.0.1:8000/api/cars?withDriver=1`;
       
 function mainFetch() {
-    let shop=document.getElementById('shop');
-    shop.innerHTML='';
+  let shop=document.getElementById('shop');
+  shop.innerHTML='';
     fetch(url)
     .then(response => response.json())
     .then(data => {
         data.forEach(car => {
-        console.log(data);
+          console.log(data);
         shop.innerHTML+=`
         <div class="arr-col">
-                    <div class="img">
-                        <img src="http://127.0.0.1:8000/car/img/${car.img}" alt="">
-                    </div>
-                    <h5>${car.brand}</h5>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
+        <div class="img">
+        <img src="http://127.0.0.1:8000/car/img/${car.img}" alt="">
+        </div>
+        <h5>${car.brand}</h5>
+        <div class="rating">
+        <div class="stars">
+        <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -30,87 +32,87 @@ function mainFetch() {
                         </div>
                         <div class="review">
                             <span>${car.name}</span>
-                        </div>
+                            </div>
                     </div>
                     <div class="features">
-                        <span><i class="fa-solid fa-circle-exclamation"></i>${car.gear}</span>
-                        <span><i class="fa-solid fa-location-dot"></i>${car.location}</span>
+                    <span><i class="fa-solid fa-circle-exclamation"></i>${car.gear}</span>
+                    <span><i class="fa-solid fa-location-dot"></i>${car.location}</span>
                         <span><i class="fa-solid fa-location-crosshairs"></i>${car.fuel_type}</span>
                         <span><i class="fa-solid fa-car"></i>With Driver</span>
                     </div>
                     <div class="price">
-                        <p>${car.price_day}JD/Day</p>
-                        <a href="../SingleCarWdriver/SingleCarWdriver.html#${car.id}"><button>Rent Now</button></a>
+                    <p>${car.price_day}JD/Day</p>
+                    <a href="../SingleCarWdriver/SingleCarWdriver.html#${car.id}"><button>Rent Now</button></a>
                     </div>
-                </div> `   }) 
-    });
-}
+                    </div> `   }) 
+                  });
+                }
 
-function val(){
-  let order = document.querySelector('#order_by').value;
+                function val(){
+                  let order = document.querySelector('#order_by').value;
   console.log(order);
   url+=`&order_by=${order}`;
   mainFetch();
 }
 function ge(){
-    const gearIds = [...document.querySelectorAll('input[name="gear"]:checked')] .map(checkBox => checkBox.value);
+  const gearIds = [...document.querySelectorAll('input[name="gear"]:checked')] .map(checkBox => checkBox.value);
   const urlParams = new URLSearchParams(url);
   const existingBrandIds = urlParams.getAll('gear[]');
 
 
   const uncheckedBrands = existingBrandIds.filter(gearId => !gearIds.includes(gearId));
-      console.log();
-        // Remove the unchecked brands from the URL
+  console.log();
+  // Remove the unchecked brands from the URL
   uncheckedBrands.forEach(gearId => {
-      url = url.replace(`&gear[]=${gearId}`, '');
+    url = url.replace(`&gear[]=${gearId}`, '');
     });
     gearIds.forEach(element => {
-
+      
           url+=`&gear[]=${element}`;
           console.log(url)
       });
-    mainFetch();
-
-}
+      mainFetch();
+      
+    }
 function fuel(){
     const fuelIds = [...document.querySelectorAll('input[name="fuel_type"]:checked')]
-      .map(checkBox => checkBox.value);
-
+    .map(checkBox => checkBox.value);
+    
   // Get the existing brand IDs from the URL
   const urlParams = new URLSearchParams(url);
   const existingBrandIds = urlParams.getAll('fuel_type[]');
 
   // Identify the unchecked brands
   const uncheckedBrands = existingBrandIds.filter(brandId => !fuelIds.includes(brandId));
-
+  
   // Remove the unchecked brands from the URL
   uncheckedBrands.forEach(brandId => {
     url = url.replace(`&fuel_type[]=${brandId}`, '');
   });
       console.log(fuelIds);
-    if (fuelIds.length > 0) {
+      if (fuelIds.length > 0) {
         fuelIds.forEach(element => {
           console.log(element)
           url+=`&fuel_type[]=${element}`;
           console.log(url)
-      });
-    }
-    mainFetch();
-
+        });
+      }
+      mainFetch();
+      
 }
 
 function br() {
-    
-    const newBrandIds = [...document.querySelectorAll('input[name="brand"]:checked')]
-    .map(checkBox => checkBox.value);
-
+  
+  const newBrandIds = [...document.querySelectorAll('input[name="brand"]:checked')]
+  .map(checkBox => checkBox.value);
+  
   // Get the existing brand IDs from the URL
   const urlParams = new URLSearchParams(url);
   const existingBrandIds = urlParams.getAll('brands[]');
-
+  
   // Identify the unchecked brands
   const uncheckedBrands = existingBrandIds.filter(brandId => !newBrandIds.includes(brandId));
-
+  
   // Remove the unchecked brands from the URL
   uncheckedBrands.forEach(brandId => {
     url = url.replace(`&brands[]=${brandId}`, '');
@@ -119,51 +121,65 @@ function br() {
   // Add the newly selected brands to the URL
   if (newBrandIds.length > 0) {
     newBrandIds.forEach(element => {
-          console.log(element)
-          url+=`&brands[]=${element}`;
+      // console.log(element)
+      url+=`&brands[]=${element}`;
       });
-    console.log(url)
+      // console.log(url)
+      
+    }
     
+    mainFetch();
   }
 
-  mainFetch();
-}
-//    const brandIds = [...document.querySelectorAll('input[name="brand"]:checked')]
-//       .map(checkBox => checkBox.value);
 
 function loc() {
-    
+  
   const locIds = [...document.querySelectorAll('input[name="location"]:checked')]
-    .map(checkBox => checkBox.value);
-
-    
+  .map(checkBox => checkBox.value);
+  
+  
   // Get the existing brand IDs from the URL
   const urlParams = new URLSearchParams(url);
   const existingBrandIds = urlParams.getAll('locations[]');
-
+  
   // Identify the unchecked brands
   const uncheckedBrands = existingBrandIds.filter(brandId => !locIds.includes(brandId));
-
+  
   // Remove the unchecked brands from the URL
   uncheckedBrands.forEach(brandId => {
     url = url.replace(`&locations[]=${brandId}`, '');
   });
-
-    console.log(locIds);
+  
+  console.log(locIds);
   if (locIds.length > 0) {
     locIds.forEach(element => {
-        console.log(element)
-        url+=`&locations[]=${element}`;
+      // console.log(element)
+      url+=`&locations[]=${element}`;
     });
   }
   mainFetch();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  
+  const queryString = window.location.search;
+  
+  const searchParams = new URLSearchParams(queryString);
+  
+  const loc= searchParams.get('location');
+  const br= searchParams.get('brand');
+  const pr= searchParams.get('price');
+  const fu= searchParams.get('fuel_type');
+  
+  url+=(!loc) ? '':`&locations[]=${loc}` ;
+  url+=(!br) ? '':'&brands[]='+br;
+  url+='&price='+pr;
+  url+=(!fu) ? '':'&fuel_type[]='+fu;
+ 
+
     mainFetch();
-        
     // Get the select elements
-        var selectBrands = document.getElementById("brands");
+    var selectBrands = document.getElementById("brands");
         var selectLocation = document.getElementById("location");
     
         // Fetch brands data from the API

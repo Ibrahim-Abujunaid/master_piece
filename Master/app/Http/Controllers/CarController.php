@@ -34,9 +34,21 @@ class CarController extends Controller
         if ($request->has('brands')) {
             $query->whereIn('cars.brand_id', $request->brands);
         }
-        if ($request->filled('max_price')) {
-            $query->where('price_day', '<=', $request->max_price);
+        // if ($request->filled('max_price')) {
+        //     $query->where('price_day', '<=', $request->max_price);
+        // }
+            // $query->where('price_day', '>=', $min)
+            //       ->where('price_day', '<=', $max);isset($min) &&
+        if (request()->filled('price')) {
+            list($min, $max) = explode(",", $request->price);
+            if ( !empty($max)) {
+            $query->whereBetween("price_day", [$min, $max]);}
+            else{
+                $max=$query->max("price_day");
+                $query->whereBetween("price_day", [$min, $max]);
+            }
         }
+
 
         $orderBy=$request->order_by;
         switch ($orderBy) {
