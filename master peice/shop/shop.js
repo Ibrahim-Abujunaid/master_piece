@@ -160,6 +160,21 @@ function loc() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+
+  const queryString = window.location.search;
+  
+  const searchParams = new URLSearchParams(queryString);
+  
+  const loc= searchParams.get('location');
+  const br= searchParams.get('brand');
+  const pr= searchParams.get('price');
+  const fu= searchParams.get('fuel_type');
+  
+  url+=(!loc) ? '':`&locations[]=${loc}` ;
+  url+=(!br) ? '':'&brands[]='+br;
+  url+='&price='+pr;
+  url+=(!fu) ? '':'&fuel_type[]='+fu;
+ 
     mainFetch();
         
     // Get the select elements
