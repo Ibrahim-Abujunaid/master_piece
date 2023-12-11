@@ -43,12 +43,14 @@ class ReviewController extends Controller
         $rent_id = $request->rent_id;
         $rent= Rent::find($rent_id);
         // return response()->json($rent);
-        if ($rent->end<=Carbon::now()) {
-            $review = Review::create($request->all());
+        if ($rent->accept==1) {
+            $review = Review::updateOrCreate(
+                ['rent_id' => $rent_id],
+                $request->all());
             return response()->json([$review]);
 
         }else {
-            return response()->json([ 'sorry you only can leave review after your rent duration is finished']);
+            return response()->json([ 'sorry you only can\'t rate until the landlord accept your rent']);
         }
     }
 
