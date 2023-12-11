@@ -17,17 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
                                 .then(response => response.json())
                                 .then(driver => {
                                         console.log(driver)
-                                        
-                                        
+
+
                                         document.getElementById('driver').innerHTML =
-                                         `
+                                                `
                                          <div class="driver">
                                          <div class="img1">
                                              <img src="http://127.0.0.1:8000/car/img/${driver[0].img}" alt="">
                                          </div>
                                          <div class="info_driver">
                                              <span>Driver name : ${driver[0].name}</span>
-                                             <span>Driver age : ${driver[0].driverAge}</span>
+                                             <span>Driver age : ${driver[0].age}</span>
                                          </div>
                                      </div>
                                         
@@ -112,36 +112,38 @@ document.getElementById('submit').addEventListener('click', (e) => {
         } else if (startDate > endDate) {
                 alert('Return date should be after the rental date.');
                 return;
-        }
-        const start = document.getElementById('rentalDate').value;
-        const end = document.getElementById('returnDate').value;
-        const userId = sessionStorage.getItem('userId');
-        const carId = window.location.hash.substring(1);
-        const bookingData = {
-                start,
-                end,
-                user_id: userId,
-                car_id: carId
-        };
-        console.log(bookingData)
-        fetch('http://127.0.0.1:8000/api/rents/', {
-                method: 'POST',
-                headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json, text-plain, /',
-                        'X-Requested-With': 'XMLHttpRequest'
-                },
-                body: JSON.stringify(bookingData)
-        })
-                .then(response => response.json())
-                .then(data => {
-                        // Handle the response from the server as needed
-                        alert("Booking pending wait landloard Accept", start, end);
-                        window.location.reload();
-                        console.log('Booking successful:', data);
-                        // You may want to redirect or show a success message
+        } else {
+                const start = document.getElementById('rentalDate').value;
+                const end = document.getElementById('returnDate').value;
+                const userId = sessionStorage.getItem('userId');
+                const carId = window.location.hash.substring(1);
+                const bookingData = {
+                        start,
+                        end,
+                        user_id: userId,
+                        car_id: carId
+                };
+                console.log(bookingData)
+                fetch('http://127.0.0.1:8000/api/rents/', {
+                        method: 'POST',
+                        headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json, text-plain, /',
+                                'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: JSON.stringify(bookingData)
                 })
-                .catch(error => console.error('Error confirming booking:', error));
+                        .then(response => response.json())
+                        .then(data => {
+                                // Handle the response from the server as needed
+                                alert("Booking pending wait landloard Accept", start, end);
+                                window.location.href="/profile/Orders/orders.html";
+                                // window.location.reload();
+                                console.log('Booking successful:', data);
+                                // You may want to redirect or show a success message
+                        })
+                        .catch(error => console.error('Error confirming booking:', error));
+        }
 });
 
 document.addEventListener('DOMContentLoaded', () => {

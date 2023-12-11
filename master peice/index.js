@@ -11,6 +11,7 @@ menu.onclick = () => {
  fetch('http://127.0.0.1:8000/api/count')
  .then(response => response.json())
  .then(countData => {
+    console.log(countData)
      // Update the HTML content with the retrieved data
      document.getElementById('counterContainer').innerHTML = `
          <div class="container">
@@ -45,7 +46,7 @@ valueDisplays.forEach((valueDisplay) => {
   let counter = setInterval(function () {
     startValue += 1;
     valueDisplay.textContent = startValue;
-    if (startValue == endValue) {
+    if (startValue >= endValue) {
       clearInterval(counter);
     }
   }, duration);

@@ -5,14 +5,7 @@ menu.onclick=()=>{
         nav1.classList.toggle('activ');
 }
 
-   let isLoggedIn=sessionStorage.getItem("isLoggedin");
-   let role=sessionStorage.getItem("roleId")
-   if(isLoggedIn!="true"){
-        window.location.href="/login/login.html";
-        alert("login please");
-   }else if(isLoggedIn=="true"&&role==2){
-        window.location.href="/profile/OrdersRenter/OrdersRenter.html"
-   }
+   
   
   let name11=document.getElementById('name');
      name11.textContent=sessionStorage.getItem('name')
@@ -45,7 +38,7 @@ menu.onclick=()=>{
                            <p><strong>Cost:</strong>${rent.total_price} JD</p>
                            <p class="status ${rent.status.toLowerCase()}">${rent.status}</p>
                            <div class="actions">
-                               <i class="fa-solid fa-trash delete ${rent.status.toLowerCase() == 'accepted' ? 'invisible' : ''}" onclick="deleteRent(${rent.id})"></i>
+                               <i class="fa-solid fa-trash${ rent.status.toLowerCase()== 'accepted' ? 'invisible' :''}" onclick="deleteRent(${rent.id})"></i>
                            </div>
                        </div>
                    </div>
@@ -80,7 +73,7 @@ menu.onclick=()=>{
                            <p><strong>Driver:</strong>${rent.withDriver}</p>
                            <p class="status ${rent.status.toLowerCase()}">${rent.status}</p>
                            <div class="actions">
-                               <i class="fa-solid fa-trash delete ${rent.status.toLowerCase() == 'accepted' ? 'invisible' : ''}" onclick="deleteRent1(${rent.id})"></i>
+                               <i class="fa-solid fa-trash delete" onclick="deleteRent1(${rent.id})"></i>
                            </div>
                        </div>
                    </div>

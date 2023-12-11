@@ -74,6 +74,7 @@ function rejectRent(rentId) {
         })
                 .then(response => response.json())
                 .then(responseData => {
+                        window.location.reload();
                         // Handle the response, update UI, or perform any additional actions
                         console.log(`Rent with ID ${rentId} rejected successfully`);
                 })
@@ -86,7 +87,6 @@ function rejectRent(rentId) {
 // Function to accept a rent by ID
 
 function acceptRent(rentId) {
-        setTimeout(1000);
         updateRentStatus(rentId);
         // window.location.reload();
 }
@@ -103,7 +103,7 @@ function updateRentStatus(rentId) {
         })
                 .then(response => response.json())
                 .then(updatedRent => {
-
+                     window.location.reload();
 
                         // Update the UI or perform any additional actions
                         console.log(`Rent with ID ${rentId}ed successfully`);

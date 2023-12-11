@@ -80,9 +80,39 @@ function validateSignupForm() {
     })
     .then(response => response.json())
     .then(data => {
-        // Handle the response from the server, e.g., show success message or redirect
-        console.log(data);
-        window.location.href = "../login/login.html"; // Redirect on success
+        console.log("Data received:", data);
+
+        if (data.message === 'The email has already been taken.') {
+            console.log("Email already taken. Display error message.");
+            errorElement.textContent = data.message;
+        } else {
+            console.log("User signed up successfully. Redirecting based on role.");
+            var roleId = data.user.role_id;
+            var id = data.user.id;
+            var name = data.user.name;
+
+            // Save role id, user id, and isLoggedin in session storage
+            sessionStorage.setItem('name', name);
+            sessionStorage.setItem('roleId', roleId);
+            sessionStorage.setItem('userId', id);
+            sessionStorage.setItem('isLoggedin', true);
+             let rolee=roleId;
+            // Redirect based on role id
+            switch (rolee) {
+                case "2":
+                    console.log("Redirecting to Renter page");
+                    window.location.href = "/Renter/renter.html";
+                    break;
+                case "3":
+                    console.log("Redirecting to index.html");
+                    window.location.href = "/index.html";
+                    break;
+                default:
+                    console.log("hi")
+                    break;
+            }
+            
+        }
     })
     .catch(error => {
         // Handle any errors that occurred during the fetch

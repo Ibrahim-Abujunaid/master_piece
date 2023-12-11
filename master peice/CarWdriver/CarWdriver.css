@@ -488,6 +488,7 @@ section{
     border-radius: 10px;
     text-align: justify;
     height: auto;
+    width: 230px;
     
 }
 .arr-row .arr-col .img{
@@ -516,8 +517,10 @@ section{
 .arr-row .arr-col .rating{
     display: flex;
     gap: 0.2rem;
+    justify-content: space-around;
     align-items: center;
     padding-bottom: 0.3rem;
+    margin-right: 2.9rem;
 }
 .arr-row .arr-col .rating .stars{
     font-size: 0.6rem;

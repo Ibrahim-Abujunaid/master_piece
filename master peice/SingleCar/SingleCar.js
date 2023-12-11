@@ -79,23 +79,19 @@ function initializeFlatpickr(bookedDates) {
 document.getElementById('submit').addEventListener('click', (e) => {
     e.preventDefault();
     const isLoggedin = sessionStorage.getItem('isLoggedin');
+        if (!isLoggedin) {
+                alert('Please log in to confirm the booking.');
+                return;
+        }
 
-    if (!isLoggedin) {
-        alert('Please log in to confirm the booking.');
-    } else {
         const startDate = document.getElementById('rentalDate').value;
         const endDate = document.getElementById('returnDate').value;
-
         if (startDate.trim() === "" || endDate.trim() === "") {
-            alert('Please provide both start date and end date.');
+                alert('shold add start date or end date')
         } else if (startDate > endDate) {
-            alert('Return date should be after the rental date.');
-        } else {
-            // Your logic to proceed with the booking confirmation
-            alert('Booking confirmed!');
-            window.location.href="/profile/Orders/orders.html";
-        }
-    }
+                alert('Return date should be after the rental date.');
+                return;
+        }else{
 
     const start = document.getElementById('rentalDate').value;
     const end = document.getElementById('returnDate').value;
@@ -120,12 +116,15 @@ document.getElementById('submit').addEventListener('click', (e) => {
         .then(response => response.json())
         .then(data => {
             // Handle the response from the server as needed
+            
             alert("Booking pending wait landloard Accept", start, end);
-            window.location.reload();
+            window.location.href="/profile/Orders/orders.html";
             console.log('Booking successful:', data);
             // You may want to redirect or show a success message
+        
         })
         .catch(error => console.error('Error confirming booking:', error));
+    }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
