@@ -13,11 +13,7 @@ use DatePeriod;
 
 class CarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index(Request $request)
     {
         $query= Car::query();
@@ -78,22 +74,6 @@ class CarController extends Controller
         return response()->json($cars);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $c=Car::where('owner_id',$request->owner_id)->where('withDriver', 1)->get();
@@ -124,12 +104,7 @@ class CarController extends Controller
         return response()->json(["added",$car]);}
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Car  $car
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         $car=Car::where('cars.id',$id)
@@ -159,24 +134,13 @@ class CarController extends Controller
         return response()->json(compact('car','bookedDates'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Car  $car
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Car $car)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Car  $car
-     * @return \Illuminate\Http\Response
-     */
+  
     public function update(Request $request, Car $car)
     {
         $car->update($request->all());
@@ -198,12 +162,7 @@ class CarController extends Controller
         return response()->json(["done",$car]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Car  $car
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function destroy(Car $car)
     {
         $car->delete();
