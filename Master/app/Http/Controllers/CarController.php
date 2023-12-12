@@ -111,7 +111,8 @@ class CarController extends Controller
         ->join('locations','locations.id','=','cars.location_id')
         ->join('brands','brands.id','=','cars.brand_id')
         ->join('users', 'users.id', '=', 'cars.owner_id')
-        ->select('cars.id','cars.img','locations.name as location','cars.owner_id','users.name','cars.description','cars.model','cars.price_day',
+        ->select('cars.id','cars.img','locations.name as location','cars.owner_id'
+        ,'users.name','cars.description','cars.model','cars.price_day',
         'brands.name as brand','cars.model','cars.gear','cars.fuel_type')
         ->get();
         $bookedDates = [];
