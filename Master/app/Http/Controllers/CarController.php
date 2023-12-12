@@ -35,8 +35,11 @@ class CarController extends Controller
             $query->whereIn('cars.brand_id', $request->brands);
         }
         if ($request->has('search')) {
+            $query->where(function ($query) use ($request) {
+
             $query->where('users.name', 'LIKE', '%' . $request->search . '%')
             ->orWhere('brands.name','LIKE', '%' . $request->search . '%');
+            });
           }
         if (request()->filled('price')) {
             list($min, $max) = explode(",", $request->price);

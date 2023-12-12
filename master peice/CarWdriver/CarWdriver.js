@@ -54,6 +54,11 @@ function mainFetch() {
   url+=`&order_by=${order}`;
   mainFetch();
 }
+
+function search(){
+  url+='&search='+document.getElementById('search_bar').value;
+  mainFetch();
+}
 function ge(){
   const gearIds = [...document.querySelectorAll('input[name="gear"]:checked')] .map(checkBox => checkBox.value);
   const urlParams = new URLSearchParams(url);
@@ -121,10 +126,8 @@ function br() {
   // Add the newly selected brands to the URL
   if (newBrandIds.length > 0) {
     newBrandIds.forEach(element => {
-      // console.log(element)
       url+=`&brands[]=${element}`;
       });
-      // console.log(url)
       
     }
     
@@ -153,7 +156,6 @@ function loc() {
   console.log(locIds);
   if (locIds.length > 0) {
     locIds.forEach(element => {
-      // console.log(element)
       url+=`&locations[]=${element}`;
     });
   }
