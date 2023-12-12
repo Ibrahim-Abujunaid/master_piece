@@ -36,7 +36,6 @@ class CarController extends Controller
         }
         if ($request->has('search')) {
             $query->where(function ($query) use ($request) {
-
             $query->where('users.name', 'LIKE', '%' . $request->search . '%')
             ->orWhere('brands.name','LIKE', '%' . $request->search . '%');
             });
