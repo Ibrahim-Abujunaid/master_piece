@@ -135,11 +135,6 @@ class CarController extends Controller
     }
 
     
-    public function edit(Car $car)
-    {
-        //
-    }
-
   
     public function update(Request $request, Car $car)
     {
